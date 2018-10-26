@@ -1,0 +1,19 @@
+sudo: required
+dist: trusty
+before_install:
+    - sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended latexmk texlive-lang-german texlive-doc-de pgf texlive-font-utils zip inkscape
+      
+
+script:
+    - mkdir output
+    - latexmk -pdf Blatt00/main.tex
+    - mv Blatt00/main.pdf output/Blatt00.pdf
+
+deploy:
+    provider: pages
+    skip-cleanup: true
+    github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
+    keep-history: true
+    local-dir: output
+    on:
+        branch: master
