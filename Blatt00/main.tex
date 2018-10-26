@@ -1,0 +1,46 @@
+\documentclass[DIN, pagenumber=false, fontsize=11pt, parskip=half]{scrartcl}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc} % this is needed for umlauts
+\usepackage[ngerman]{babel} % this is needed for umlauts
+\usepackage[T1]{fontenc} 
+\usepackage{commath}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{tikz-timing}
+\usepackage{tikz}
+\usepackage{multirow}
+
+\usetikzlibrary{calc,shapes.multipart,chains,arrows}
+
+\title{Grundlagen der Rechnerarchitektur}
+\author{Paul Nykiel}
+
+\begin{document}
+    \maketitle
+    \section{Einleitungsfragen}
+    \begin{enumerate}[label=(\alph*)]
+            \item Unter Rechnerarchitektur stelle ich mir den Aufbau und die Funktionsweise eines Computers vor. Vor allem die digitalen (Halbleiter-) Schaltungen die Realisiert werden müssen, um Logik-Gatter zu bauen, und daraus dann Rechenwerke und Speicher zu konstruieren.
+            \item Für mich sind die Grundlagen der Rechnerarchitektur die theoretischen Grundlagen zu Digitalen-Schaltungen um solche zu optimieren, sowie die technischen Grundlagen zu Halbleitern sowie zur Herstellung von diesen.
+            \item Ich erhoffe mir von der Vorlesung mehr über den Aufbau von Computern zu erfahren, sowie wie sich Computer auf niedriger Ebene mit Assembler programmieren lassen.
+    \end{enumerate}
+
+    \section{Historische Entwicklung}
+    \begin{enumerate}[label=(\alph*)]
+        \item Durch die Reibung der mechanischen Bauteile wird auch schon für einfache Rechner sehr viel Kraft benötigt und folglich viel Energie verbraucht.
+            Komplexere Rechner konnten so folglich nicht realisiert werden. Außerdem waren die mechanischen Rechner äußerst Fehleranfällig, da sich die 
+            Schaltglieder verhaken konnten.
+        \item Vor der Elektronischen Speicherung wurden Daten auf Lochkarten gespeichert. Diese wurden 1880 von Hermann Hollerith nach dem Vorbild von
+            gelochten Fahrkarten entwickelt. Durch das Lochmuster wurden die verschiedenen Daten codiert.
+        \item Die neuen Rechner waren mit den alten Rechnern nicht binärkompatibel, das heißt die Rechner unterstützen nicht die gleichen Befehle.
+            Zudem hat oftmals die Wortbreite zwischen den Architekturen variiert.
+        \item Die (elektro-) mechanischen Rechner wurden durch Rechner auf Basis von Halbleitern ersetzt. Diese wurden zuerst mit Germanium-Dioden und später mit
+            Transistoren gebaut.
+        \item Da das kaufmännische Rechnen vor allem viele Operationen mit ganzen Zahlen (Cents)  erforderten waren die kaufmännischen Rechner darauf optimiert.
+            Für wissenschaftliches Rechnen sind oftmals Gleitkommaoperationen notwendig, diese liesen sich auf kaufmännischen Rechner nur langsam durchführen.
+    \end{enumerate}
+\end{document}
