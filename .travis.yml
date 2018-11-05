@@ -10,6 +10,11 @@ script:
     - latexmk -pdf main.tex
     - mv main.pdf ../output/Blatt00.pdf
     - cd ..
+    - cd Blatt01
+    - latexmk -pdf main.tex
+    - mv main.pdf ../output/Blatt01.pdf
+    - cd ..
+
 
 deploy:
     provider: pages
