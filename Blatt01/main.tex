@@ -1,0 +1,97 @@
+\documentclass[DIN, pagenumber=false, fontsize=11pt, parskip=half]{scrartcl}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc} % this is needed for umlauts
+\usepackage[ngerman]{babel} % this is needed for umlauts
+\usepackage[T1]{fontenc} 
+\usepackage{commath}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{tikz-timing}
+\usepackage{tikz}
+\usepackage{multirow}
+
+\usetikzlibrary{calc,shapes.multipart,chains,arrows}
+
+\title{Grundlagen der Rechnerarchitektur}
+\author{Tim Luchterhand, Paul Nykiel (Abgabegruppe 117)}
+
+\begin{document}
+    \maketitle
+    \textbf{Hinweis: } jede Zahl, bei der keine Basis angegeben ist, ist im 10er System.
+    \section{Zahlensysteme}
+    \begin{enumerate}
+        \item In additiven Zahlensysteme ist Multiplikation und Division nur schwer durchzuführen
+        \item 
+            \begin{enumerate}
+                \item $7\cdot1 + 20\cdot2 + 360\cdot6 = 2207$
+                \item $2\cdot1 + 20\cdot8 + 360\cdot4 + 7200\cdot5 = 37602$
+            \end{enumerate}
+        \item 
+            \begin{enumerate}
+                \item $\text{LI} = 50 + 1 = 51 = 32 + 16 + 2 + 1 = {110011}_2$
+                \item $\text{CDXIX} = 500 - 100 + 10 + 10 - 1 = 419 = 256 + 128 + 32 + 2 + 1 = {110100011}_2$
+            \end{enumerate}
+        \item 
+            \begin{enumerate}
+                \item 
+                    \begin{eqnarray*}
+                        {849}_{10} = {512}_{10} + {256}_{10} + {64}_{10} + {16}_{10} + {1}_{10} &=& {1101010001}_2 \\
+                        {11\ 0101\ 0001}_2 = {3\ 9\ 1}_{16} &=& {391}_{16}\\
+                        {1\ 101\ 010\ 001}_2 = {1\ 5\ 2\ 1}_{8} &=& {1521}_8
+                    \end{eqnarray*}
+                \item 
+                    \begin{eqnarray*}
+                        {1022}_{3} = {1\cdot3^3 + 0\cdot3^2 + 2\cdot3^1 + 2\cdot3^0}_{10} = {27 + 6 + 2}_{10} = {35}_{10} = {32 + 2 + 1}_{10} &=& {100011}_{2}\\
+                        {10\ 0011}_2 = {2\ 3}_{16} &=& {23}_{16} \\
+                        {100\ 011}_2 = {4\ 3}_{16} &=& {43}_{16}
+                    \end{eqnarray*}
+            \end{enumerate}
+        \item 
+            \begin{enumerate}
+                \item 
+                    \begin{equation*}
+                        {1001101}_2 = 1\cdot2^6 + 0\cdot2^5 + 0\cdot2^4 + 1\cdot2^3 + 1\cdot2^2 + 0\cdot2^1 + 1\cdot2^0 = {64 + 8 + 4 + 1}_{10} = {77}_{10}
+                    \end{equation*}
+                \item 
+                    \begin{equation*}
+                        {100101101}_3 = 1\cdot3^8 + 0\cdot3^7 + 0\cdot3^6 + 1\cdot3^5 + 0\cdot3^4 + 1\cdot3^3 + 1\cdot3^2 + 0\cdot3^1 + 1\cdot3^0 = 6561 + 243 + 27 + 9 + 1 = 6841
+                    \end{equation*}
+                \item 
+                    \begin{equation*}
+                        {461}_{8} = 4\cdot8^2 + 6\cdot8^1 + 1\cdot8^0 = 1024 + 48 + 1 = 1073
+                    \end{equation*}
+                \item 
+                    \begin{equation*}
+                        {1AF4}_{16} = 1\cdot16^3 + 10\cdot16^2 + 15\cdot16^1 + 4\cdot16^0 = 6900
+                    \end{equation*}
+            \end{enumerate}
+        \item 
+            \begin{enumerate}
+                \item 
+                    \begin{equation*}
+                        {AFFE}_{16} = {1010\ 1111\ 1111\ 1110}_2 = {1\ 010\ 111\ 111\ 111\ 110}_2 = {1\ 2\ 7\ 7\ 7\ 6}_8 = {12776}_8
+                    \end{equation*}
+                \item
+                    \begin{equation*}
+                        {F903}_{16} = {1111\ 1001\ 0000\ 0011}_2 = {1\ 111\ 100\ 100\ 000\ 011}_2 = {1\ 7\ 4\ 4\ 0\ 3}_8 = {174403}_8
+                    \end{equation*}
+                \item
+                    \begin{equation*}
+                        {3F8B}_{16} = {0011\ 1111\ 1000\ 1011}_2 = {0\ 011\ 111\ 110\ 001\ 011}_2 = {0\ 3\ 7\ 6\ 1\ 3}_8 = {37613}_8
+                    \end{equation*}
+            \end{enumerate}
+        \item 
+            \begin{enumerate}
+                \item 
+                    \begin{eqnarray*}
+                        {753}_8 = {111\ 101\ 011}_2 &=& {1\ 1110\ 1011}_2 \\
+                        {753}_8 = 7\cdot8^2 + 5\cdot8^1 + 3*8^0 = 448 + 40 + 3 = 491 = 121\cdot4 + 11\cdot0 + 1\cdot7 &=& {407}_{11}
+                    \end{eqnarray*}
+            \end{enumerate}
+    \end{enumerate}
+\end{document}
