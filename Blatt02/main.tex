@@ -20,6 +20,13 @@
 \title{Grundlagen der Rechnerarchitektur}
 \author{Tim Luchterhand, Paul Nykiel (Abgabegruppe 117)}
 
+\newcommand{\bullshit}[2]{#1-er System:
+            \begin{equation*}
+                1001100 = #1^6 \cdot 1 + #1^5 \cdot 0 + #1^4 \cdot 0 + #1^3 \cdot 1 + #1^2 \cdot 1 +  #1^1 \cdot 0 + #1^0 \cdot  0 = #2
+            \end{equation*}
+            }
+
+
 \begin{document}
     \maketitle
     \textbf{Hinweis: } jede Zahl, bei der keine Basis angegeben ist, ist im 10er System.
@@ -40,6 +47,96 @@
             ||||| ||||| 
             ||||| |||||$
         \item $0 = \thicksim$
-
+    \end{enumerate}
+    \section{Arithmetik natürlicher und ganzer Zahlen}
+    \begin{enumerate}
+        \item 
+            \begin{align*}
+                & 1037 \\
+                + & \hspace{0.0cm} 3802  \\
+                %& \hspace{0.2cm} {\scriptstyle 1\, 1} \\
+                \cline{1-2}  
+                = &4839  
+            \end{align*}
+        \item 
+            \begin{align*}
+                & 9548\\
+                - & \hspace{0.0cm} 3027  \\
+                %& \hspace{0.2cm} {\scriptstyle 1\, 1} \\
+                \cline{1-2}  
+                = &6521  
+            \end{align*}
+        \item 
+            \begin{align*}
+                & \hspace{0.1cm} 1010110\\
+                + & \hspace{0.1cm}1010001 \\
+                & \hspace{0.0cm} {\scriptstyle 1\, \, \, 1} \\
+                \cline{1-2}  
+                = &10101111
+            \end{align*}
+        \item 
+            \begin{align*}
+                & \hspace{0.0cm} 1010111\\
+                + & \hspace{0.0cm}1000101 \\
+                \cline{1-2}  
+                = &0010010
+            \end{align*}
+    \end{enumerate}
+    \begin{enumerate}
+        \item \bullshit{3}{765}
+        \item \bullshit{4}{4176}
+        \item \bullshit{5}{15775}
+        \item \bullshit{6}{46908}
+        \item \bullshit{7}{118041}
+        \item \bullshit{8}{262720}
+        \item \bullshit{9}{532251}
+        \item \bullshit{10}{1001100}
+        \item \bullshit{11}{1773013}
+        \item \bullshit{12}{2987856}
+    \end{enumerate}
+    In folgender Reihenfolge: Zahl, Vorzeichenbehaftete Binärzahl, Einerkomplement, Zweierkomplement. Alle Zahlen werden als 16-bit Breit angenommen.
+    \begin{align*}
+        -861 &=& -0000\ 0011\ 0101\ 1101 &=& 1111\ 1100\ 1010\ 0010 &=& 1111\ 1100\ 1010\ 0011\\
+        {765}_8 &=& 0000\ 0001\ 1111\ 0101 &=& 0000\ 0001\ 1111\ 0101 &=& 0000\ 0001\ 1111\ 0101 \\ 
+        -{210}_3 &=&- 0000\ 0000\ 0001\ 0101 &=& 1111\ 1111\ 1110\ 1010 &=& 1111\ 1111\ 1110\ 1011
+    \end{align*}
+    
+    \begin{enumerate}
+        \item Nebenrechnung: 
+            \begin{equation*}
+                {765}_{18} = 0000\ 1001\ 0100\ 1101
+            \end{equation*}
+            Vorzeichenbehaftet:
+            \begin{align*}
+                & \hspace{0.0cm} 0000\ 1001\ 0100\ 1101 \\
+                - & \hspace{0.0cm}0000\ 0000\ 0001\ 0101\\
+                & \hspace{2.2cm} {\scriptstyle 1} \\
+                \cline{1-2}  
+                = & 0000\ 1001\ 0011\ 1000
+            \end{align*}
+            Zweierkomplement:
+            \begin{align*}
+                & \hspace{0.2cm} 0000\ 1001\ 0100\ 1101 \\
+                + & \hspace{0.2cm}1111\ 1111\ 1110\ 1011\\
+                & \hspace{0.2cm} {\scriptstyle1\, 1\, 1\, 1\, \, \, 1\, 1\, 1\, 1\, \, \, 1\, \, \, \, \, \, \, \, \, 1\, \, \, 1\, 1\, 1} \\
+                \cline{1-2}  
+                = & 1\ 0000\ 1001\ 0011\ 1000
+            \end{align*}
+            Einerkomplement (zuerst nur addieren):
+            \begin{align*}
+                & \hspace{0.2cm} 0000\ 1001\ 0100\ 1101 \\
+                + & \hspace{0.2cm}1111\ 1111\ 1110\ 1010\\
+                & \hspace{0.2cm} {\scriptstyle1\, 1\, 1\, 1\, \, \, 1\, 1\, 1\, 1\, \, \, 1\, \, \, \, \, \, \, \, \, 1} \\
+                \cline{1-2}  
+                = & 1\ 0000\ 1001\ 0011\ 0111
+            \end{align*}
+            Ergebniss der Subtraktion, durch addieren von 1:
+            \begin{align*}
+                & 1\ 0000\ 1001\ 0011\ 0111\\
+                + & \hspace{0.3cm}0000\ 0000\ 0000\ 0001\\
+                & \hspace{3.03cm} {\scriptstyle1\, 1\, 1} \\
+                \cline{1-2}  
+                = & 1\ 0000\ 1001\ 0011\ 1000
+            \end{align*}
     \end{enumerate}
 \end{document}
