@@ -14,6 +14,10 @@ script:
     - latexmk -pdf main.tex
     - mv main.pdf ../output/Blatt01.pdf
     - cd ..
+    - cd Blatt02
+    - latexmk -pdf main.tex
+    - mv main.pdf ../output/Blatt02.pdf
+    - cd ..
 
 
 deploy:
