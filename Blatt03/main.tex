@@ -1,0 +1,177 @@
+\documentclass[DIN, pagenumber=false, fontsize=11pt, parskip=half]{scrartcl}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc} % this is needed for umlauts
+\usepackage[ngerman]{babel} % this is needed for umlauts
+\usepackage[T1]{fontenc} 
+\usepackage{commath}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{tikz-timing}
+\usepackage{tikz}
+\usepackage{multirow}
+
+\usetikzlibrary{calc,shapes.multipart,chains,arrows}
+
+\title{Grundlagen der Rechnerarchitektur}
+\author{Tim Luchterhand, Paul Nykiel (Abgabegruppe 117)}
+
+\begin{document}
+    \maketitle
+    \textbf{Hinweis: } Jede Zahl, bei der keine Basis spezifiziert ist, ist im 10er System zu interpretieren, sofern nicht anders angegeben.
+    \section{Zahlendarstellung}
+    \subsection{}
+    \subsubsection{Gleitkommazahlen}
+    Gleitkommazahlen sind flexibel im Bezug auf die Größenordnung der Zahl, das heißt man kann sehr große und sehr kleine Zahlen gut darstellen und 
+    ohne zu wissen in welcher Größenordnung sich die Zahlen befinden.
+
+    Mathematische Operationen auf Gleitkommazahlen sind vergleichsweise aufwendig und erfordern häufig ein spezielles Rechenwerk.
+    \subsubsection{Festkommazahlen}
+    Mathematische Operationen auf Festkommazahlen lassen sich bereits mit einem einfachen Ganzzahlrechenwerk durchführen.
+
+    Bei Festkommazahlen muss im Vorraus bekannt sein, in welcher Größenordnung sich die Zahl befinden wird, da jeweils eine feste Anzahl Bits für 
+    Vor- und Nachkommastellen reserviert sind.
+
+    \subsection{}
+    \begin{equation*}
+        \frac{43}{30} = 1 + \frac{13}{30} = 1 + \frac{1}{2+\frac{4}{30}} = \frac{1}{2+\frac{1}{7+\frac{2}{4}}} = \frac{1}{2+\frac{1}{7+\frac{1}{2}}}    
+    \end{equation*}
+    \begin{equation*}
+        \frac{55}{19} = 2 + \frac{17}{19} = 1 + \frac{1}{1 + \frac{2}{17}} = \frac{1}{1 +  \frac{1}{8 + \frac{1}{2}}}
+    \end{equation*}
+
+    \section{Gleitkommaarithmetik}
+    \setcounter{subsection}{2}
+    \subsection{}
+    \begin{enumerate}[label=(\alph*)]
+        \item
+            Größte Zahl: Mantisse Maximal (${22222}_3 = 242$), Exponent Maximal (${222}_3 - 13 = 13$) und Vorzeichen positiv.
+            \begin{equation*}
+                z_\text{max} = + 242 \cdot 3^{13} = 385826166 
+            \end{equation*}
+            Kleinste Zahl: wie größte Zahl nur mit negativem Vorzeichen
+            \begin{equation*}
+                z_\text{min} = - z_\text{max} = -385826166
+            \end{equation*}
+        \item 
+            \begin{enumerate}[label=\roman*.]
+                \item 
+                    \begin{equation*}
+                        2.25 = 1.125 \cdot 2^1 = (-1)^0 \cdot 2^{(4-3)} \cdot (1 + 2^{-3}) = {0\ 100\ 00100}_\text{Gleitkomma} 
+                    \end{equation*}
+                    \begin{equation*}
+                        5.625 = 1.40625 \cdot 2^2 = (-1)^0 \cdot 2^{(5-3)} \cdot (1 + 2^{-2} + 2^{-3} + 2^{-5}) = {0\ 101\ 01101}_\text{Gleitkomma} 
+                    \end{equation*}
+                    Folgende Rechnung im Gleitkommaformat:
+                    \begin{equation*}
+                        0\ 100\ 00100 + 0\ 101\ 01101 \stackrel{\text{Exponent angleichen}}{=} 0\ 101\ 10010 + 0\ 100\ 01101 = 0\ 101\ 01111
+                    \end{equation*}
+                    Da die Mantisse nur 5 Bit lang ist kann die Zahl nicht ohne Fehler dargestellt werden.
+                \item 
+                    \begin{equation*}
+                        2.5 = 1.25 \cdot 2^1 = (-1)^0 \cdot 2^{(4-3)} \cdot (1 + 2^{-2}) = {0\ 100\ 01000}_\text{Gleitkomma}
+                    \end{equation*}
+                    \begin{equation*}
+                        16.8 = 1.05 \cdot 2^4 \approx (-1)^0 \cdot 2^{(7-3)} \cdot (1 + 2^{-5} + 2^{-6} + 2^{-9} + \ldots) 
+                        \approx {0\ 111\ 00001}_\text{Gleitkomma}
+                    \end{equation*}
+                    Fünf Bit Mantisse reichen hier nicht aus, um alle Nachkommastellen darzustellen.
+
+                    Folgende Rechnung im Gleitkommaformat:
+                    \begin{equation*}
+                        0\ 100\ 00100 \cdot 0\ 111\ 00001 =
+                        0\ 000\ 10101
+                    \end{equation*}
+                    Die Exponenten werden addiert und dann wieder normiert (Bias abziehen). Dabei kommt es zu einem Overflow, 
+                    der Exponent ist eigentlich ${1000}_2$, es werden aber nur die unteren drei Bits gespeichert. Bei IEEE-754 gibt es für diesen Fall den
+                    Spezialwert infinity.
+                \item 
+                    \begin{equation*}
+                        -6.375 = -1 \cdot 2^2 \cdot 1.59375 = (-1)^1 \cdot 2^{(5-3)} \cdot (1 + 2^{-1} + 2^{-4} + 2^{-5}) 
+                        = {1\ 101\ 10011}_\text{Gleitkomma}
+                    \end{equation*}
+                    \begin{equation*}
+                        4.125 = 1.03125 \cdot 2^2 = (-1)^0 \cdot 2^{(5-3)} \cdot (1 + 2^{-5}) = {0\ 101\ 00001}_\text{Gleitkomma}
+                    \end{equation*}
+                    
+                    Folgende Rechnung im Gleitkommaformat:
+                    \begin{equation*}
+                        {1\ 101\ 10011} + {0\ 101\ 00001} = {1\ 100\ 00100}
+                    \end{equation*}
+            \end{enumerate}
+    \end{enumerate}
+
+    \section{Festkommarithmetik}
+    \setcounter{subsection}{3}
+    \subsection{}
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+            \begin{enumerate}[label=(\roman*)]
+                \item 
+                    \begin{equation*}
+                        8.875 = 2^3 + 2^{-1} + 2^{-2} + 2^{-3} = {01000,11100}_2
+                    \end{equation*}
+                \item
+                    \begin{equation*}
+                        31.125 = 2^4 + 2^3 + 2^2 + 2^1  + 2^0 + 2^{-3} = {11111,00100}_2
+                    \end{equation*}
+            \end{enumerate}
+        \item 
+            \begin{enumerate}[label=(\roman*)]
+                \item
+                    \begin{equation*}
+                        -5.625 = -(2^2 + 2^0 + 2^{-1} + 2^{-3}) = {-00101,10100}_2
+                    \end{equation*}
+                    \begin{equation*}
+                        7.65625 = 2^2 + 2^1 + 2^0 +2^{-1} + 2^{-3} + 2^{-5} = {00111,10101}_2
+                    \end{equation*}
+
+                    Folgende Rechnung im Festkommaformat:
+                    \begin{equation*}
+                        -00101,10100 + 00111,10101 = 10,00001
+                    \end{equation*}
+                \item
+                    \begin{equation*}
+                        7.03125 = 2^2 + 2^1 + 2^0 + 2^{-5} = {00111,00001}_2
+                    \end{equation*}
+                    \begin{equation*}
+                        -(2.03125) = -(2^1 + 2^{-5}) = -{00010,00001}_2
+                    \end{equation*}
+                    
+                    Folgende Rechnung im Festkommaformat:
+                    \begin{equation*}
+                        00111,00001 - (-00010,00001) = 00111,00001 + 00010,00001 = 01001,00010
+                    \end{equation*}
+
+                \item 
+                    \begin{equation*}
+                        -5.15625 = -(2^2 + 2^1 + 2^{-3} + 2^{-5}) = -{00110,00101}_2
+                    \end{equation*}
+                    \begin{equation*}
+                        0.25 = 2^{-2} = {00000,01000}_2
+                    \end{equation*}
+
+                    Folgende Rechnung im Festkommaformat:
+                    \begin{equation*}
+                        -{00110,00101}_2 : {00000,01000}_2 = -{11000,10100}_2
+                    \end{equation*}
+
+                \item
+                    \begin{equation*}
+                        4.0 = 2^2 = {00100,00000}_2
+                    \end{equation*}
+                    \begin{equation*}
+                        -2.0625 = -(2^1 + 2^{-4}) = -{00010,00010}_2
+                    \end{equation*}
+
+                    Folgende Rechung im Festkommaformat:
+                    \begin{equation*}
+                        {00100,00000}_2 \cdot -{00010,00010}_2 = -{01000,01000}
+                    \end{equation*}
+            \end{enumerate}
+    \end{enumerate}
+\end{document}
