@@ -57,7 +57,7 @@
                 \Leftrightarrow (\overline{x_1} \cdot \overline{x_2}) \cdot (x_1 + x_2) &=& \overline{(x_1 + x_2)} \cdot  (x_1 + x_2)\\
                 \Leftrightarrow (\overline{x_1} \cdot \overline{x_2}) \cdot x_1 +  (\overline{x_1} \cdot \overline{x_2}) \cdot x_2 &=& 0\\
                 \Leftrightarrow (\overline{x_1} \cdot x_1) \cdot \overline{x_2} + (\overline{x_2} \cdot x_2)  \cdot \overline{x_1} &=& 0\\
-                \Leftrightarrow 0 \cdot \overline{x_1} + 0 \cdot \overline{x_1} &=& 0\\
+                \Leftrightarrow 0 \cdot \overline{x_2} + 0 \cdot \overline{x_1} &=& 0\\
                 \Leftrightarrow 0 + 0 &=& 0\\
                 \Leftrightarrow 0 &=& 0
             \end{eqnarray*}
@@ -103,22 +103,23 @@
             \end{eqnarray*}
     \end{enumerate}
 
-    \section{Shannon Zerlegung und Erweiterung}
-    \setcounter{subsection}{3}
-    \begin{enumerate}[label=(\alph*)]
-        \item 
+    \subsection{}
+    \begin{enumerate}
+        \item
             \begin{eqnarray*}
-                f(x_1, x_2) &=& x_1 \cdot f(1, x_2) + x_2 \cdot f(x_1, 1) \\
-                &=& x_1 \cdot (1 \cdot x_2 + 1 \cdot \overline{x_2} + 0 \cdot x_2) + x_2 \cdot (x_1 \cdot 1 + x_1 \cdot 0 + \overline{x_1} \cdot 1) \\
-                &=& x_1 \cdot (x_2 + \overline{x_2} + 0) + x_2 \cdot (x_1 + \overline{x_1}) \\
-                &=& x_1 \cdot 1 + x_2 \cdot 1 \\
-                &=& x_1 + x_2 
+                &&\overline{(\overline{x_1} + \overline{x_2}) \cdot (x_1 + \overline{x_3}) \cdot (x_2 + x_3)} \\
+                &\stackrel{\text{2b}}{=}&  \overline{(\overline{x_1} + \overline{x_2}) \cdot (x_1 + \overline{x_3})} + \overline{(x_2 + x_3)}  \\
+                &\stackrel{\text{2b}}{=}&  \overline{(\overline{x_1} + \overline{x_2})} + \overline{(x_1 + \overline{x_3})} + \overline{(x_2 + x_3)}  \\
+                &\stackrel{\text{2a}}{=}&  (\overline{\overline{x_1}} \cdot \overline{\overline{x_2}}) \cdot 
+                                        (\overline{x_1} \cdot  \overline{\overline{x_3}}) \cdot (\overline{x_2} \cdot \overline{x_3}) \\
+                &\stackrel{\text{P7}}{=}& (x_1 \cdot x_2) \cdot (\overline{x_1} \cdot x_3) \cdot (\overline{x_2} \cdot \overline{x_3})
             \end{eqnarray*}
-        \item 
+        \item
             \begin{eqnarray*}
-                f(x_1, x_2, x_3) &=& x_1 \cdot f(1, x_2, x_3) + x_2 \cdot f(x_1, 1, x_2) + x_3 \cdot f(x_1, x_2, 1) \\
-                x_1 \cdot (
+                &&\overline{\overline{(x_1 \cdot \overline{(x_2 \cdot x_2)})} \cdot \overline{(\overline{(x_1 \cdot x_1)}\cdot x_2 )}} \\
+                &\stackrel{\text{2b}}{=}& \overline{\overline{(x_1 \cdot \overline{(x_2 \cdot x_2)})}} + \overline{\overline{(\overline{(x_1 \cdot x_1)} \cdot x_2)}} \\
+                &\stackrel{\text{P7}}{=}& (x_1 \cdot \overline{(x_2 \cdot x_2)}) + (\overline{(x_1 \cdot x_1)} \cdot x_2)\\
+                &\stackrel{\text{P3}}{=}& x_1 \cdot \overline{x_2} + \overline{x_1} \cdot x_2\\
             \end{eqnarray*}
     \end{enumerate}
-
 \end{document}
