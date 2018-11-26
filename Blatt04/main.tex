@@ -28,6 +28,7 @@
     \textbf{Hinweis: } Jede Zahl, bei der keine Basis spezifiziert ist, ist im 10er System zu interpretieren, sofern nicht anders angegeben.
     \section{Boolesche Algebra}
     \subsection{}
+    Beweis durch Nachrechnen:
     \subsubsection{Absorbierendes Element}
     \begin{eqnarray*}
         \boolshitKgV{1}
@@ -55,13 +56,14 @@
             \begin{eqnarray*}
                 \overline{x_1} \cdot \overline{x_2} &=& \overline{x_1 + x_2}\\
                 \Leftrightarrow (\overline{x_1} \cdot \overline{x_2}) \cdot (x_1 + x_2) &=& \overline{(x_1 + x_2)} \cdot  (x_1 + x_2)\\
-                \Leftrightarrow (\overline{x_1} \cdot \overline{x_2}) \cdot x_1 +  (\overline{x_1} \cdot \overline{x_2}) \cdot x_2 &=& 0\\
+                \stackrel{\text{H4'}}{\Leftrightarrow} (\overline{x_1} \cdot \overline{x_2}) \cdot x_1 +  (\overline{x_1} \cdot \overline{x_2}) \cdot x_2 &=& 0\\
                 \Leftrightarrow (\overline{x_1} \cdot x_1) \cdot \overline{x_2} + (\overline{x_2} \cdot x_2)  \cdot \overline{x_1} &=& 0\\
-                \Leftrightarrow 0 \cdot \overline{x_2} + 0 \cdot \overline{x_1} &=& 0\\
+                \stackrel{\text{H4'}}{\Leftrightarrow} 0 \cdot \overline{x_2} + 0 \cdot \overline{x_1} &=& 0\\
                 \Leftrightarrow 0 + 0 &=& 0\\
-                \Leftrightarrow 0 &=& 0
+                \stackrel{\text{H3}}{\Leftrightarrow} 0 &=& 0
             \end{eqnarray*}
         \item
+            Es wird $\overline{\overline{a}} = a$ genutzt, Beweis siehe Vorlesung.
             \begin{equation*}
                 \overline{x_1} + \overline{x_2} = \overline{\overline{\overline{x_1} + \overline{x_2}}} \stackrel{\text{(a)}}{=}
                 \overline{\overline{\overline{x_1}} \cdot \overline{\overline{x_2}}} = \overline{x_1 \cdot x_2}
