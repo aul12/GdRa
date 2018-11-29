@@ -76,32 +76,32 @@
     \begin{enumerate}[label=(\alph*)]
         \item
             \begin{equation*}
-                f(x_1) = \overline{x_1} \cdot (x_1 + (x_1 \cdot \overline{x_1})) = \overline{x_1} \cdot (x_1 + 0) = \overline{x_1} \cdot x_1 = 0
+                f(x_1) = \overline{x_1} \cdot (x_1 + (x_1 \cdot \overline{x_1})) \stackrel{\text{P9}}{=} \overline{x_1} \cdot (x_1 + 0) \stackrel{\text{P5'}}{=} \overline{x_1} \cdot x_1 \stackrel{\text{P9}}{=} 0
             \end{equation*}
         \item 
             \begin{equation*}
-                f(x_1, x_2) = x_1 \cdot x_2 + x_1 \cdot (\overline{x_2} \cdot 1) = x_1 \cdot x_2 + x_1 \cdot \overline{x_2} = x_1 \cdot (x_2 + \overline{x_2})
-                = x_1 \cdot 1 = x_1
+                f(x_1, x_2) = x_1 \cdot x_2 + x_1 \cdot (\overline{x_2} \cdot 1) \stackrel{\text{P5}}{=} x_1 \cdot x_2 + x_1 \cdot \overline{x_2} \stackrel{\text{P4}}{=} x_1 \cdot (x_2 + \overline{x_2})
+                \stackrel{\text{P9'}}{=} x_1 \cdot 1 \stackrel{\text{P5}}{=} x_1
             \end{equation*}
         \item 
             \begin{equation*}
-                f(x_1, x_2) = x_1 \cdot (\overline{x_1} \cdot (\overline{\overline{x_2}} + \overline{x_2})) = 
-                    x_1 \cdot (\overline{x_1} \cdot (x_2 + \overline{x_2})) = x_1 \cdot (\overline{x_1} \cdot 1) =
-                    x_1 \cdot \overline{x_1} = 0
+                f(x_1, x_2) = x_1 \cdot (\overline{x_1} \cdot (\overline{\overline{x_2}} + \overline{x_2})) \stackrel{\text{P7}}{=} 
+                    x_1 \cdot (\overline{x_1} \cdot (x_2 + \overline{x_2})) \stackrel{\text{P9'}}{=} x_1 \cdot (\overline{x_1} \cdot 1) \stackrel{\text{P5}}{=} 
+                    x_1 \cdot \overline{x_1} \stackrel{\text{P9}}{=} 0
             \end{equation*}
         \item 
             \begin{equation*}
                 f(x_1, x_2, x_3) = \overline{(x_1 \cdot x_2)} + ((x_3 + 0) \cdot \overline{x_3})
-                = \overline{(x_1 \cdot x_2)} + (x_3 \cdot \overline{x_3})
-                = \overline{(x_1 \cdot x_2)} + 0
-                = \overline{(x_1 \cdot x_2)}
+                \stackrel{\text{P5'}}{=} \overline{(x_1 \cdot x_2)} + (x_3 \cdot \overline{x_3})
+                \stackrel{\text{P9}}{=} \overline{(x_1 \cdot x_2)} + 0
+                \stackrel{\text{P5*}}{=} \overline{(x_1 \cdot x_2)}
             \end{equation*}
         \item 
             \begin{eqnarray*}
                 f(x_1, x_2, x_3, x_4) &=& (\overline{x_1} \cdot (x_3 + \overline{x_3}) \cdot x_2) + (\overline{x_1} \cdot x_3) + \overline{(x_1 + x_4)} \\
-                &=& (\overline{x_1} \cdot 1 \cdot x_2) + (\overline{x_1} \cdot x_3) + \overline{(x_1 + x_4)} \\
-                &=& \overline{x_1} \cdot x_2 + \overline{x_1} \cdot x_3 + \overline{x_1} \cdot \overline{x_4} \\
-                &=& \overline{x_1} \cdot (x_2 + x_3 +  \overline{x_4})
+                &\stackrel{\text{P9'}}{=}& (\overline{x_1} \cdot 1 \cdot x_2) + (\overline{x_1} \cdot x_3) + \overline{(x_1 + x_4)} \\
+                &\stackrel{\text{P5}}{=}& \overline{x_1} \cdot x_2 + \overline{x_1} \cdot x_3 + \overline{x_1} \cdot \overline{x_4} \\
+                &\stackrel{\text{P4}}{=}& \overline{x_1} \cdot (x_2 + x_3 +  \overline{x_4})
             \end{eqnarray*}
     \end{enumerate}
 
@@ -110,16 +110,16 @@
         \item
             \begin{eqnarray*}
                 &&\overline{(\overline{x_1} + \overline{x_2}) \cdot (x_1 + \overline{x_3}) \cdot (x_2 + x_3)} \\
-                &\stackrel{\text{2b}}{=}&  \overline{(\overline{x_1} + \overline{x_2}) \cdot (x_1 + \overline{x_3})} + \overline{(x_2 + x_3)}  \\
-                &\stackrel{\text{2b}}{=}&  \overline{(\overline{x_1} + \overline{x_2})} + \overline{(x_1 + \overline{x_3})} + \overline{(x_2 + x_3)}  \\
-                &\stackrel{\text{2a}}{=}&  (\overline{\overline{x_1}} \cdot \overline{\overline{x_2}}) \cdot 
+                &\stackrel{\text{P8}}{=}&  \overline{(\overline{x_1} + \overline{x_2}) \cdot (x_1 + \overline{x_3})} + \overline{(x_2 + x_3)}  \\
+                &\stackrel{\text{P8}}{=}&  \overline{(\overline{x_1} + \overline{x_2})} + \overline{(x_1 + \overline{x_3})} + \overline{(x_2 + x_3)}  \\
+                &\stackrel{\text{P8'}}{=}&  (\overline{\overline{x_1}} \cdot \overline{\overline{x_2}}) \cdot 
                                         (\overline{x_1} \cdot  \overline{\overline{x_3}}) \cdot (\overline{x_2} \cdot \overline{x_3}) \\
                 &\stackrel{\text{P7}}{=}& (x_1 \cdot x_2) \cdot (\overline{x_1} \cdot x_3) \cdot (\overline{x_2} \cdot \overline{x_3})
             \end{eqnarray*}
         \item
             \begin{eqnarray*}
                 &&\overline{\overline{(x_1 \cdot \overline{(x_2 \cdot x_2)})} \cdot \overline{(\overline{(x_1 \cdot x_1)}\cdot x_2 )}} \\
-                &\stackrel{\text{2b}}{=}& \overline{\overline{(x_1 \cdot \overline{(x_2 \cdot x_2)})}} + \overline{\overline{(\overline{(x_1 \cdot x_1)} \cdot x_2)}} \\
+                &\stackrel{\text{P8}}{=}& \overline{\overline{(x_1 \cdot \overline{(x_2 \cdot x_2)})}} + \overline{\overline{(\overline{(x_1 \cdot x_1)} \cdot x_2)}} \\
                 &\stackrel{\text{P7}}{=}& (x_1 \cdot \overline{(x_2 \cdot x_2)}) + (\overline{(x_1 \cdot x_1)} \cdot x_2)\\
                 &\stackrel{\text{P3}}{=}& x_1 \cdot \overline{x_2} + \overline{x_1} \cdot x_2\\
             \end{eqnarray*}
