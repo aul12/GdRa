@@ -14,6 +14,7 @@
 \usepackage{tikz-timing}
 \usepackage{tikz}
 \usepackage{multirow}
+\usepackage{colortbl}
 
 \usetikzlibrary{calc,shapes.multipart,chains,arrows}
 
@@ -22,6 +23,7 @@
 
 \newcommand{\boolshitKgV}[1]{\text{kgV}(#1,30) &=& 30\\}
 \newcommand{\boolshitggT}[1]{\text{ggT}(#1,30) &=& #1\\}
+\definecolor{mixtureColor}{HTML}{555439}
 
 \begin{document}
     \maketitle
@@ -30,7 +32,7 @@
     \subsection{}
     \begin{enumerate}[label = (\alph*)]
         \item Die Schaltalgebra ist eine Teilmenge der Boolschen Algebra mit einer zweiwertigen Trägermenge. 
-            Das heißt es gibt nur zwei möglichen Werte, anstatt beliebig vielen Werten bei einer Schaltalgebra.
+            Das heißt es gibt nur zwei möglichen Werte, anstatt beliebig vielen Werten bei einer Boolschen Algebra.
         \item 
             \begin{enumerate}[label = (\roman*)]
                 \item 
@@ -51,5 +53,192 @@
                     \end{equation*}
                     Nur mit NOR-Gattern:
             \end{enumerate}
+    \end{enumerate}
+
+    \subsection{}
+    %TODO
+
+    \subsection{}
+    \begin{enumerate}[label=(\alph*)]
+        \item
+            DKNF:
+            \begin{eqnarray*}
+                f_\text{DKNF}(x) &=& \overline{x_1} \cdot \overline{x_2} \cdot x_3 \\
+                &&+ \overline{x_1} \cdot x_2 \cdot \overline{x_3} \\
+                &&+ \overline{x_1} \cdot x_2 \cdot x_3 \\
+                &&+ x_1 \cdot \overline{x_2} \cdot \overline{x_3} \\
+                &&+ x_1 \cdot x_2 \cdot x_3
+            \end{eqnarray*}
+            KKNF:
+            \begin{eqnarray*}
+                f_\text{KKNF}(x) &=& (x_1 + x_2 + x_3) \\
+                &&\cdot (\overline{x_1} + x_2 + \overline{x_3})\\
+                &&\cdot (\overline{x_1} + \overline{x_2} + x_3)
+            \end{eqnarray*}
+        \item
+            \begin{eqnarray*}
+                f_\text{DKNF}(x) &=& \overline{x_1} \cdot \overline{x_2} \cdot x_3 \\
+                &&+ \overline{x_1} \cdot x_2 \cdot \overline{x_3} \\
+                &&+ \overline{x_1} \cdot x_2 \cdot x_3 \\
+                &&+ x_1 \cdot \overline{x_2} \cdot \overline{x_3} \\
+                &&+ x_1 \cdot x_2 \cdot x_3\\
+                &=& \overline{x_1} \cdot (\overline{x_2} \cdot x_3 + x_2 \cdot \overline{x_3} + x_2 \cdot x_3)\\
+                &&+ x_1 \cdot (x_2 \cdot x_3 + \overline{x_2} \cdot \overline{x_3})\\
+                &=& \overline{x_1} \cdot (x_2 + x_3) + x_1 \cdot (x_2 \cdot x_3 + \overline{x_2} \cdot \overline{x_3})\\
+                &=& \overline{\overline{\overline{x_1} \cdot (x_2 + x_3) + x_1 \cdot (x_2 \cdot x_3 + \overline{x_2} \cdot \overline{x_3})}}\\
+                &=& \overline{\overline{(\overline{x_1} \cdot (x_2 + x_3))} \cdot \overline{(x_1 \cdot (x_2 \cdot x_3 + \overline{x_2} \cdot \overline{x_3}))}}\\
+                &=& \overline{(x_1 + \overline{(x_2 + x_3)}) \cdot (\overline{x_1} + \overline{(x_2 \cdot x_3 + \overline{x_2} \cdot \overline{x_3})})}\\
+                &=& \overline{(x_1 + (\overline{x_2} \cdot \overline{x_3})) \cdot (\overline{x_1} + (\overline{(x_2 \cdot x_3)} \cdot \overline{(\overline{x_2} \cdot \overline{x_3})}))}\\
+                &=& \overline{(x_1 + (\overline{x_2} \cdot \overline{x_3})) \cdot (\overline{x_1} + ((\overline{x_2} + \overline{x_3}) \cdot (x_2 + x_3)))}\\
+                &=& \overline{(x_1 + (\overline{x_2} \cdot \overline{x_3})) \cdot (\overline{x_1} + (x_2 \cdot \overline{x_2} + x_2 \cdot \overline{x_3} + x_3 \cdot \overline{x_2} + x_3 \cdot \overline{x_3}))}\\
+                &=& \overline{(x_1 + (\overline{x_2} \cdot \overline{x_3})) \cdot (\overline{x_1} + x_2 \cdot \overline{x_3} + x_3 \cdot \overline{x_2})}\\
+                &=& \overline{x_1 \cdot \overline{x_1} + x_1 \cdot x_2 \cdot \overline{x_3} + x_1 \cdot \overline{x_2} \cdot x_3} \\
+                &&  \overline{+ \overline{x_1} \cdot \overline{x_2} \cdot \overline{x_3}
+                    + x_2 \cdot \overline{x_3} \cdot \overline{x_2} \cdot \overline{x_3}
+                    + \overline{x_2} \cdot x_3 \cdot \overline{x_2} \cdot \overline{x_3}}\\
+                &=& \overline{x_1 \cdot x_2 \cdot \overline{x_3} + x_1 \cdot \overline{x_2} \cdot x_3 
+                    + \overline{x_1} \cdot \overline{x_2} \cdot \overline{x_3}}\\
+                &=& \overline{x_1 \cdot x_2 \cdot \overline{x_3}} \cdot \overline{x_1 \cdot \overline{x_2} \cdot \overline{x_3}}
+                    \cdot \overline{\overline{x_1} \cdot \overline{x_2} \cdot \overline{x_3}}\\
+                &=& (\overline{x_1} + \overline{x_2} + x_3) \cdot (\overline{x_1} + x_2 + x_3)
+                    \cdot (x_1 + x_2 + x_3)\\
+            \end{eqnarray*}
+            %TODO something is wrong...
+        \item 
+            Karnaugh-Veitch-Diagramm:
+            \begin{figure}[H]
+                \centering
+                \begin{tabular}{cc|cccc}
+                    & &  & \multicolumn{2}{c}{$x_2$}\\
+                    & & 1 & 1 & 0 & 0\\
+                    \midrule
+                    \multirow{ 2}{*}{$x_1$} & 0 & \cellcolor{blue!25}1 & \cellcolor{mixtureColor!25}1 & \cellcolor{red!25}1 & 0\\
+                     & 1 & 0 & \cellcolor{green!25}1 & 0 & \cellcolor{yellow!25}1\\
+                    \midrule
+                    & & 0 & 1 & 1 & 0\\
+                    & &  & \multicolumn{2}{c}{$x_3$}\\
+                \end{tabular}
+            \end{figure}
+            Daraus ergibt sich:
+            \begin{equation*}
+                f_\text{Min}(x) = \textcolor{blue}{\overline{x_1}\cdot x_2} + 
+                \textcolor{green}{x_2 \cdot x_3} + 
+                \textcolor{red}{x_3 \cdot \overline{x_1}}+
+                \textcolor{yellow}{x_1 \cdot \overline{x_2} \cdot \overline{x_3}}
+            \end{equation*}
+        \item
+            DKNF:
+            \begin{eqnarray*}
+                g_\text{DKNF}(x) &=& (\overline{x_1} \cdot \overline{x_2} \cdot x_3)\\
+                &&+ (\overline{x_1} \cdot x_2 \cdot \overline{x_3})\\
+                &&+ (x_1 \cdot \overline{x_2} \cdot \overline{x_3})\\
+                &&+ (x_1 \cdot \overline{x_2} \cdot x_3)\\
+                &&+ (x_1 \cdot x_2  \cdot \overline{x_3})\\
+                &&+ (x_1 \cdot x_2 \cdot x_3)
+            \end{eqnarray*}
+
+            KKNF:
+            \begin{eqnarray*}
+                g_\text{KKNF}(x) &=& (x_1 + \overline{x_2} + \overline{x_3})\\
+                &&\cdot (x_1 + x_2 + x_3)
+            \end{eqnarray*}
+        \item
+            \begin{eqnarray*}
+                g_\text{DKNF}(x) &=& (\overline{x_1} \cdot \overline{x_2} \cdot x_3)\\
+                &&+ (\overline{x_1} \cdot x_2 \cdot \overline{x_3})\\
+                &&+ (x_1 \cdot \overline{x_2} \cdot \overline{x_3})\\
+                &&+ (x_1 \cdot \overline{x_2} \cdot x_3)\\
+                &&+ (x_1 \cdot x_2  \cdot \overline{x_3})\\
+                &&+ (x_1 \cdot x_2 \cdot x_3)\\
+                &=& \overline{x_1} \cdot (\overline{x_2} \cdot x_3 + x_2 \cdot \overline{x_3})\\
+                &&+ x_1 \cdot (\overline{x_2} \cdot \overline{x_3} + \overline{x_2} \cdot x_3 + x_2 \cdot \overline{x_3} + \overline{x_2} \cdot \overline{x_3})\\
+                &=& \overline{x_1} \cdot (\overline{x_2} \cdot x_3 + x_2 \cdot \overline{x_3}) + x_1\\
+                &=& \overline{\overline{\overline{x_1} \cdot (\overline{x_2} \cdot x_3 + x_2 \cdot \overline{x_3}) + x_1}}\\
+                &=& \overline{\overline{(\overline{x_1} \cdot (\overline{x_2} \cdot x_3 + x_2 \cdot \overline{x_3}))} \cdot \overline{x_1}} \\
+                &=& \overline{(x_1 + \overline{(\overline{x_2} \cdot x_3 + x_2 \cdot \overline{x_3})}) \cdot \overline{x_1}} \\
+                &=& \overline{(x_1 + (\overline{\overline{x_2} \cdot x_3} \cdot \overline{x_2 \cdot \overline{x_3}})) \cdot \overline{x_1}}\\
+                &=& \overline{(x_1 + (x_2 + \overline{x_3}) \cdot (\overline{x_2} + x_3)) \cdot \overline{x_1}}\\
+                &=& \overline{x_1 \cdot \overline {x_1} + (x_2 + \overline{x_3}) \cdot (\overline{x_2} + x_3) \cdot \overline{x_1}}\\
+                &=& \overline{(x_2 + \overline{x_3}) \cdot (\overline{x_2} + x_3) \cdot \overline{x_1}}\\
+                &=& \overline{(x_2 \cdot \overline{x_2} + x_2 \cdot x_3 + \overline{x_2} \cdot \overline{x_3} + x_3 \cdot \overline{x_3}) \cdot \overline{x_1}}\\
+                &=& \overline{(x_2 \cdot x_3 + \overline{x_2} \cdot \overline{x_3}) \cdot \overline{x_1}}\\
+                &=& \overline{(x_2 \cdot x_3 \cdot \overline{x_1}) + (\overline{x_2} \cdot \overline{x_3} \cdot \overline{x_1})}\\
+                &=& \overline{(x_2 \cdot x_3 \cdot \overline{x_1})} \cdot \overline{(\overline{x_2} \cdot \overline{x_3} \cdot \overline{x_1})}\\
+                &=& (\overline{x_2} + \overline{x_3} + x_1) \cdot (x_2 + x_3 + x_1)\\
+                &=& g_\text{KKNF}(x)
+            \end{eqnarray*}
+        \item 
+            Karnaugh-Veitch-Diagramm:
+            \begin{figure}[H]
+                \centering
+                \begin{tabular}{cc|cccc}
+                    & &  & \multicolumn{2}{c}{$x_2$}\\
+                    & & 1 & 1 & 0 & 0\\
+                    \midrule
+                    \multirow{ 2}{*}{$x_1$} & 0 & \cellcolor{green!25}1& 0 & \cellcolor{red!25}1 & 0\\
+                     & 1 & \cellcolor{blue!25}1 & \cellcolor{blue!25}1 & \cellcolor{blue!25}1 & \cellcolor{blue!25}1\\
+                    \midrule
+                    & & 0 & 1 & 1 & 0\\
+                    & &  & \multicolumn{2}{c}{$x_3$}\\
+                \end{tabular}
+            \end{figure}
+            Daraus ergibt sich:
+            \begin{equation*}
+                g_\text{Min}(x) = \textcolor{blue}{x_1} + \textcolor{green}{\overline{x_2} \cdot x_3} + \textcolor{red}{x_2 \cdot \overline{x_3}}
+            \end{equation*}
+    \end{enumerate}
+
+    \section{Shannon Expansion}
+    \setcounter{subsection}{3}
+    \subsection{}
+    \begin{enumerate}[label=(\alph*)]
+        \item
+            \begin{eqnarray*}
+                f(x_1, x_2, x_3) &=& \overline{x_1} \cdot \overline{x_2} \cdot \overline{x_3} \cdot f(0,0,0) \\
+                &&+ \overline{x_1} \cdot \overline{x_2} \cdot x_3 \cdot f(0,0,1) \\
+                &&+ \overline{x_1} \cdot x_2 \cdot \overline{x_3} \cdot f(0,1,0) \\
+                &&+ \overline{x_1} \cdot x_2 \cdot x_3 \cdot f(0,1,1) \\
+                &&+ x_1 \cdot \overline{x_2} \cdot \overline{x_3} \cdot f(1,0,0) \\
+                &&+ x_1 \cdot \overline{x_2} \cdot x_3 \cdot f(1,0,1) \\
+                &&+ x_1 \cdot x_2 \cdot \overline{x_3} \cdot f(1,1,0) \\
+                &&+ x_1 \cdot x_2 \cdot x_3 \cdot f(1,1,1) \\
+                &=& \overline{x_1} \cdot \overline{x_2} \cdot \overline{x_3} \cdot 0 \\
+                &&+ \overline{x_1} \cdot \overline{x_2} \cdot x_3 \cdot 1 \\
+                &&+ \overline{x_1} \cdot x_2 \cdot \overline{x_3} \cdot 1 \\
+                &&+ \overline{x_1} \cdot x_2 \cdot x_3 \cdot 1 \\
+                &&+ x_1 \cdot \overline{x_2} \cdot \overline{x_3} \cdot 1 \\
+                &&+ x_1 \cdot \overline{x_2} \cdot x_3 \cdot 0 \\
+                &&+ x_1 \cdot x_2 \cdot \overline{x_3} \cdot 1 \\
+                &&+ x_1 \cdot x_2 \cdot x_3 \cdot 0 \\
+                &=& \overline{x_1} \cdot \overline{x_2} \cdot x_3 \\
+                &&+ \overline{x_1} \cdot x_2 \cdot \overline{x_3} \\
+                &&+ \overline{x_1} \cdot x_2 \cdot x_3\\
+                &&+ x_1 \cdot \overline{x_2} \cdot \overline{x_3} \\
+                &&+ x_1 \cdot x_2 \cdot \overline{x_3} \\
+            \end{eqnarray*}
+        \item
+            \begin{eqnarray*}
+                f(x_1, x_2, x_3) &=& \overline{x_1} \cdot \overline{x_2} \cdot \overline{x_3} \cdot f(0,0,0) \\
+                &&+ \overline{x_1} \cdot \overline{x_2} \cdot x_3 \cdot f(0,0,1) \\
+                &&+ \overline{x_1} \cdot x_2 \cdot \overline{x_3} \cdot f(0,1,0) \\
+                &&+ \overline{x_1} \cdot x_2 \cdot x_3 \cdot f(0,1,1) \\
+                &&+ x_1 \cdot \overline{x_2} \cdot \overline{x_3} \cdot f(1,0,0) \\
+                &&+ x_1 \cdot \overline{x_2} \cdot x_3 \cdot f(1,0,1) \\
+                &&+ x_1 \cdot x_2 \cdot \overline{x_3} \cdot f(1,1,0) \\
+                &&+ x_1 \cdot x_2 \cdot x_3 \cdot f(1,1,1) \\
+                &=& \overline{x_1} \cdot \overline{x_2} \cdot \overline{x_3} \cdot 1 \\
+                &&+ \overline{x_1} \cdot \overline{x_2} \cdot x_3 \cdot 1 \\
+                &&+ \overline{x_1} \cdot x_2 \cdot \overline{x_3} \cdot 1 \\
+                &&+ \overline{x_1} \cdot x_2 \cdot x_3 \cdot 1 \\
+                &&+ x_1 \cdot \overline{x_2} \cdot \overline{x_3} \cdot 0 \\
+                &&+ x_1 \cdot \overline{x_2} \cdot x_3 \cdot 1 \\
+                &&+ x_1 \cdot x_2 \cdot \overline{x_3} \cdot 0 \\
+                &&+ x_1 \cdot x_2 \cdot x_3 \cdot 0 \\
+                &=& \overline{x_1} \cdot \overline{x_2} \cdot \overline{x_3} \\
+                &&+ \overline{x_1} \cdot \overline{x_2} \cdot x_3 \\
+                &&+ \overline{x_1} \cdot x_2 \cdot \overline{x_3} \\
+                &&+ \overline{x_1} \cdot x_2 \cdot x_3\\
+                &&+ x_1 \cdot \overline{x_2} \cdot x_3 \\
+            \end{eqnarray*}
     \end{enumerate}
 \end{document}
