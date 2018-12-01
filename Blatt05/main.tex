@@ -15,6 +15,7 @@
 \usepackage{tikz}
 \usepackage{multirow}
 \usepackage{colortbl}
+\usepackage{xstring}
 
 \usetikzlibrary{calc,shapes.multipart,chains,arrows}
 
@@ -23,6 +24,46 @@
 
 \newcommand{\boolshitKgV}[1]{\text{kgV}(#1,30) &=& 30\\}
 \newcommand{\boolshitggT}[1]{\text{ggT}(#1,30) &=& #1\\}
+\newcommand{\minTerm}[4]{
+    \IfEqCase{#1}{
+        {0}{\overline{x_0}\ }
+        {1}{x_0}
+    }
+    \IfEqCase{#2}{
+        {0}{\overline{x_1}\ }
+        {1}{x_1}
+    }
+    \IfEqCase{#3}{
+        {0}{\overline{x_2}\ }
+        {1}{x_2}
+    }
+    \IfEqCase{#4}{
+        {0}{\overline{x_3}\ }
+        {1}{x_3}
+    }[\PackageError{minTerm}{Values must either be 0 or 1}]
+}
+
+\newcommand{\maxTerm}[4]{
+    (
+    \IfEqCase{#1}{
+        {0}{\overline{x_0} + }
+        {1}{x_0 + }
+    }
+    \IfEqCase{#2}{
+        {0}{\overline{x_1} + }
+        {1}{x_1 + }
+    }
+    \IfEqCase{#3}{
+        {0}{\overline{x_2} + }
+        {1}{x_2 + }
+    }
+    \IfEqCase{#4}{
+        {0}{\overline{x_3}}
+        {1}{x_3}
+    }[\PackageError{minTerm}{Values must either be 0 or 1}]
+    )
+}
+
 \definecolor{mixtureColor}{HTML}{555439}
 
 \begin{document}
@@ -38,25 +79,65 @@
                 \item 
                     Nur mit NAND-Gattern:
                     \begin{equation*}
-                        x_1 \cdot x_2 = \overline{\overline{x_1 \cdot x_2}} = \overline{\overline{x_1 \cdot x_2} \cdot \overline{x_1 \cdot x_2}}
+                        x_1 \cdot x_2 \stackrel{\text{P7}}{=} \overline{\overline{x_1 \cdot x_2}} \stackrel{\text{P3}}{=} \overline{\overline{x_1 \cdot x_2} \cdot \overline{x_1 \cdot x_2}}
                     \end{equation*}
                     Nur mit NOR-Gattern:
                     \begin{equation*}
-                        x_1 \cdot x_2 = \overline{\overline{x_1 \cdot x_2}} = \overline{\overline{x_1} + \overline{x_2}}= \overline{\overline{x_1 + 0} + \overline{x_2 + 0}}
+                        x_1 \cdot x_2 \stackrel{\text{P3}}{=} \overline{\overline{x_1 \cdot x_2}} \stackrel{\text{P8}}{=} \overline{\overline{x_1} + \overline{x_2}} \stackrel{\text{P5}}{=} \overline{\overline{x_1 + 0} + \overline{x_2 + 0}}
                     \end{equation*}
                 \item
                     Nur mit NAND-Gattern:
                     \begin{equation*}
-                        x_1 \cdot \overline{x_2} + \overline{x_1} \cdot x_2 = x_1 \cdot \overline{x_2 \cdot x_2} + \overline{x_1 \cdot x_1} \cdot x_2  
-                        = \overline{\overline{x_1 \cdot \overline{x_2 \cdot x_2} + \overline{x_1 \cdot x_1} \cdot x_2}}
-                        = \overline{\overline{x_1 \cdot \overline{x_2 \cdot x_2}} \cdot \overline{ \overline{x_1 \cdot x_1} \cdot x_2}}
+                        x_1 \cdot \overline{x_2} + \overline{x_1} \cdot x_2 \stackrel{\text{P3}}{=} x_1 \cdot \overline{x_2 \cdot x_2} + \overline{x_1 \cdot x_1} \cdot x_2  
+                        \stackrel{\text{P7}}{=} \overline{\overline{x_1 \cdot \overline{x_2 \cdot x_2} + \overline{x_1 \cdot x_1} \cdot x_2}}
+                        \stackrel{\text{P8'}}{=} \overline{\overline{x_1 \cdot \overline{x_2 \cdot x_2}} \cdot \overline{ \overline{x_1 \cdot x_1} \cdot x_2}}
                     \end{equation*}
                     Nur mit NOR-Gattern:
+                    \begin{eqnarray*}
+                        x_1 \cdot \overline{x_2} + \overline{x_1} \cdot x_2 &\stackrel{\text{1b}}{=}& \overline{\overline{x_1 + 0} + \overline{\overline{x_2} + 0}}
+                        + \overline{\overline{\overline{x_1} + 0} + \overline{x_2 + 0}} \\
+                        &\stackrel{\text{P5', P7}}{=}& \overline{\overline{x_1 + 0} + x_2} + \overline{x_1 + \overline{x_2 + 0}} \\
+                        &\stackrel{\text{P5', P7}}{=}& \overline{\overline{\overline{\overline{x_1 + 0} + x_2} + \overline{x_1 + \overline{x_2 + 0}}} + 0}
+                    \end{eqnarray*}
             \end{enumerate}
     \end{enumerate}
 
     \subsection{}
-    %TODO
+    \begin{enumerate}[label = (\alph*)]
+        \item 
+             Wertetabelle
+
+            \begin{tabular}{l | l | l | l | l}
+                $2^3$ & $2^2$ & $2^1$ & $2^0$ & $f(x)$ \\ \hline
+                0 & 0 & 0 & 0 & 0 \\ \hline
+                0 & 0 & 0 & 1 & 1 \\ \hline
+                0 & 0 & 1 & 0 & 1 \\ \hline
+                0 & 0 & 1 & 1 & 1 \\ \hline
+                0 & 1 & 0 & 0 & 1 \\ \hline
+                0 & 1 & 0 & 1 & 1 \\ \hline
+                0 & 1 & 1 & 0 & 1 \\ \hline
+                0 & 1 & 1 & 1 & 1 \\ \hline
+                1 & 0 & 0 & 0 & 1 \\ \hline
+                1 & 0 & 0 & 1 & 0 \\ \hline
+                1 & 0 & 1 & 0 & 0 \\ \hline
+                1 & 0 & 1 & 1 & 1 \\ \hline
+                1 & 1 & 0 & 0 & 0 \\ \hline
+                1 & 1 & 0 & 1 & 1 \\ \hline
+                1 & 1 & 1 & 0 & 0 \\ \hline
+                1 & 1 & 1 & 1 & 0 \\ \hline
+            \end{tabular}
+        \item
+            \begin{eqnarray*}
+                f_{\text{DKNF}} &=& \minTerm{1}{0}{0}{0} + \minTerm{0}{1}{0}{0} + \minTerm{1}{1}{0}{0} + \minTerm{0}{0}{1}{0} \\
+                &+& \minTerm{1}{0}{1}{0} + \minTerm{0}{1}{1}{0} + \minTerm{1}{1}{1}{0} + \minTerm{0}{0}{0}{1} \\
+                &+& \minTerm{1}{1}{0}{1} + \minTerm{1}{0}{1}{1}
+            \end{eqnarray*}
+            \begin{eqnarray*}
+                f_{\text{KKNF}} &=& \maxTerm{1}{1}{1}{1} \cdot \maxTerm{0}{1}{1}{0} \cdot \maxTerm{1}{0}{1}{0} \cdot \maxTerm{1}{1}{0}{0} \\
+                &\cdot& \maxTerm{1}{0}{0}{0} \cdot \maxTerm{0}{0}{0}{0}
+            \end{eqnarray*}
+    \end{enumerate}
+
 
     \subsection{}
     \begin{enumerate}[label=(\alph*)]
