@@ -108,7 +108,8 @@
              Wertetabelle
 
             \begin{tabular}{l | l | l | l | l}
-                $2^3$ & $2^2$ & $2^1$ & $2^0$ & $f(x)$ \\ \hline
+                \hline
+                $2^3 = x_3$ & $2^2 = x_2$ & $2^1 = x_1$ & $2^0 = x_0$ & $f(x)$ \\ \hline
                 0 & 0 & 0 & 0 & 0 \\ \hline
                 0 & 0 & 0 & 1 & 1 \\ \hline
                 0 & 0 & 1 & 0 & 1 \\ \hline
@@ -136,6 +137,34 @@
                 f_{\text{KKNF}} &=& \maxTerm{1}{1}{1}{1} \cdot \maxTerm{0}{1}{1}{0} \cdot \maxTerm{1}{0}{1}{0} \cdot \maxTerm{1}{1}{0}{0} \\
                 &\cdot& \maxTerm{1}{0}{0}{0} \cdot \maxTerm{0}{0}{0}{0}
             \end{eqnarray*}
+        \item 
+            Da DKNF und KKNF äquivalent sind wird auf Basis der Wahrheitstabelle minimiert.
+
+            Karnaugh-Veitch-Diagramm:
+            \begin{figure}[H]
+                \centering
+                \begin{tabular}{cc|cccc|cc}
+                    & &  & \multicolumn{2}{c}{$x_1$} & & \\
+                    & & 0 & 1 & 1 & 0\\
+                    \midrule
+                    \multirow{4}{*}{$x_2$} & 0 & 0 & \cellcolor{blue!25}1 & \cellcolor{purple!25}1 & \cellcolor{red!25}1 & 0 &\multirow{4}{*}{$x_4$}\\
+                     & 1 & \cellcolor{green!25}1 & \cellcolor{gray!25}1 & \cellcolor{red!25}1 & \cellcolor{red!25}1 & 0\\
+                     & 1 & 0 & \cellcolor{yellow!25}1 & 0 & 0 & 1\\
+                     & 0 & \cellcolor{cyan!25}1 & 0 & \cellcolor{purple!25}1 & 0 & 1\\
+                    \midrule
+                    & & 0 & 0 & 1 & 1\\
+                    & &  & \multicolumn{2}{c}{$x_3$} & & \\
+                \end{tabular}
+            \end{figure}
+            Daraus ergibt sich:
+            \begin{equation*}
+                f_\text{Min}(x) = \textcolor{red}{\overline{x_4}\cdot x_3} + 
+                \textcolor{blue}{\overline{x_4}\cdot x_1 \cdot \overline{x_3}} + 
+                \textcolor{green}{\overline{x_3} \cdot x_2 \cdot \overline{x_4}}+
+                \textcolor{yellow}{x_2 \cdot \overline{x_3} \cdot x_1}+
+                \textcolor{purple}{x_1 \cdot \overline{x_2} \cdot x_3}+
+                \textcolor{cyan}{\overline{x_1} \cdot \overline{x_2} \cdot \overline{x_3} \cdot x_4}
+            \end{equation*}
     \end{enumerate}
 
 
@@ -185,7 +214,6 @@
                     \cdot (x_1 + x_2 + x_3)\\
                 &=& f_\text{KKNF}(x)
             \end{eqnarray*}
-            %TODO something is wrong...
         \item 
             Karnaugh-Veitch-Diagramm:
             \begin{figure}[H]
