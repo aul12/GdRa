@@ -17,6 +17,7 @@
 \usepackage{colortbl}
 \usepackage{xstring}
 \usepackage[european]{circuitikz}
+\usepackage{ifthen}
 
 \usetikzlibrary{calc,shapes.multipart,chains,arrows}
 
@@ -62,6 +63,7 @@
     }[\PackageError{minTerm}{Values must either be 0 or 1}]
     )
 }
+
 
 \begin{document}
     \maketitle
@@ -115,16 +117,23 @@
             \begin{equation*}
                 f(x) = \maxTerm{1}{0}{0}{0} \cdot \maxTerm{0}{1}{0}{0}
             \end{equation*}
-        \item %TODO
+        \item Gatterschaltung: %TODO machen wir hier alles richtig? Das wird viel zu groß
             \begin{figure}[H]
                 \centering
                 \begin{circuitikz}
-                    \node[european and port] at (4,0) (and00){};
-                    \node[european and port] at (4,2) (and01){};
-                    \node[european and port] at (6,1) (and02){};
-                    \draw (and00.out) -- (and02.in 2);
-                    \draw (and01.out) -- (and02.in 1);
-                    \draw (0,0) to[european not port] (and00.in 2);
+                    \node[european and port] at (6,0.5) (and00){};
+                    \node[european and port] at (6,2.5) (and01){};
+                    \node[european and port] at (8,1.5) (and02){};
+                    \node[european not port] at (3,0) (not00){};
+                    \node[european not port] at (3,1) (not01){};
+                    \node[european not port] at (3,2) (not02){};
+                    \node[european not port] at (3,3) (not03){};
+                    \draw (and00.out) -| (and02.in 2);
+                    \draw (and01.out) -| (and02.in 1);
+                    \draw (not00.out) -| (and00.in 2);
+                    \draw (not01.out) -| (and00.in 1);
+                    \draw (not02.out) -| (and01.in 2);
+                    \draw (not03.out) -| (and01.in 1);
                 \end{circuitikz}
             \end{figure}
         \item
