@@ -16,6 +16,7 @@
 \usepackage{multirow}
 \usepackage{colortbl}
 \usepackage{xstring}
+\usepackage[european]{circuitikz}
 
 \usetikzlibrary{calc,shapes.multipart,chains,arrows}
 
@@ -115,6 +116,17 @@
                 f(x) = \maxTerm{1}{0}{0}{0} \cdot \maxTerm{0}{1}{0}{0}
             \end{equation*}
         \item %TODO
+            \begin{figure}[H]
+                \centering
+                \begin{circuitikz}
+                    \node[european and port] at (4,0) (and00){};
+                    \node[european and port] at (4,2) (and01){};
+                    \node[european and port] at (6,1) (and02){};
+                    \draw (and00.out) -- (and02.in 2);
+                    \draw (and01.out) -- (and02.in 1);
+                    \draw (0,0) to[european not port] (and00.in 2);
+                \end{circuitikz}
+            \end{figure}
         \item
             Karnaugh-Veitch-Diagramm:
             \begin{figure}[H]
@@ -147,7 +159,44 @@
 
     \subsection{}
     \begin{enumerate}[label = (\alph*)]
-        \item Im Falle des \glqq{}Durchschaltens\grqq{} des Logikgatters fließt n- bzw- p-mos Logikgattern ein Strom durch den Schaltenden Transitor. Bei C-Mos fließen nur minimale Ströme.
-            Dadurch erhitzt sich die Schaltung nicht so sehr und es können mehr Gattter auf kleinerem Platz ohne thermische Probleme platziert werden.
+        \item Bei n- bzw. p-Mos Schaltungen fließt in dem Fall das der Ausgang auf
+            \textit{GND} liegt fließt durch den Pull-Up Widerstand ein Strom.
+            Dieser Strom sorgt für einen erhöhten Stromverbrauch und damit verbunden
+            thermische Probleme wenn viele Logikelemente auf kleinem Raum realisiert werden.
+
+            Zudem muss eine Kompromiss bei der Dimensionierung des Pull-Up Widerstandes
+            eingegangen werden, bei zu kleinem Widerstand fließt ein sehr großer Strom,
+            bei zu großem Widerstand kann das Gatter nicht mehr funktionieren wenn
+            der Ausgang gegen \textit{GND} gezogen wird.
+
+            Des weiteren sind Widerständer schwierig auf die Größenordnung von MOS-Transitoren
+            zu verkleineren. Außerdem führt die vergleichsweise große physikalische Ausdehnung
+            von Widerständen bei hohen Taktraten zu Problemen durch die parasitären
+            Kapazitäten und Induktivitäten eines Widerstandes.
+        \item
+            Die ausprobieren der verschiedenen Eingangswerte ergibt sich:
+            \begin{table}[H]
+                \centering
+                \begin{tabular}{ccc|c}
+                    \toprule
+                    $x_1$ & $x_2$ & $x_3$ & $f(x_1, x_2, x_3)$ \\
+                    \midrule
+                    0 & 0 & 0 & 1 \\
+                    1 & 0 & 0 & 1 \\
+                    0 & 1 & 0 & 1 \\
+                    1 & 1 & 0 & 0 \\
+                    0 & 0 & 1 & 1 \\
+                    1 & 0 & 1 & 1 \\
+                    0 & 1 & 1 & 1 \\
+                    1 & 1 & 1 & 0 \\
+                    \bottomrule
+                \end{tabular}
+            \end{table}
+            Daraus folgt:
+            \begin{equation*}
+                f(x_1, x_2, x_3) = \overline{x_1 \cdot x_2}
+            \end{equation*}
+        \item siehe b)
+        \item %TODO eigentlich nur VCC und GND tauschen
     \end{enumerate}
 \end{document}
