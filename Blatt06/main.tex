@@ -223,6 +223,23 @@
                     \node [pmos] at (12,12)(nandp1){};
                     \node [nmos] at (11,10)(nandn0){};
                     \node [nmos] at (11,8)(nandn1){};
+                    \node [vcc] at (12,14)(vcc2){};
+                    \node [rground] at (11,7)(gnd2){};
+                    
+                    \draw (nandp0.D) |- (nandn0.D);
+                    \draw (nandp1.D) |- (nandn0.D);
+                    \draw (nandn0.S) |- (nandn1.D);
+                    \draw (nandn1.S) |- (gnd2);
+                    \draw (nandp1.S) |- (vcc2);
+                    \draw (nandp0.S) |- (12,13) to[short,*-] (vcc2);
+                    \draw (8,15) |- (nandn0.G);
+                    \draw (9,5) |- (nandn1.G);
+                    \draw (9,10) to[short,*-] (9,10);
+                    \draw (9,10) |- (nandp0.G);
+                    \draw (8,15) -| (nandp1.G);
+                    \draw (8,15) to[short,-*] (8,15);
+                    \draw (11,9) to[short,*-] (13,9);
+                    \node at (14,9){$f(x)$};
                 \end{circuitikz}
             \end{figure}
     \end{enumerate}
@@ -257,14 +274,14 @@
                     1 & 1 & 0 & 0 \\
                     0 & 0 & 1 & 1 \\
                     1 & 0 & 1 & 1 \\
-                    0 & 1 & 1 & 1 \\
+                    0 & 1 & 1 & 0 \\
                     1 & 1 & 1 & 0 \\
                     \bottomrule
                 \end{tabular}
             \end{table}
             Daraus folgt:
             \begin{equation*}
-                f(x_1, x_2, x_3) = \overline{x_1 \cdot x_2}
+                f(x_1, x_2, x_3) = \overline{x_1 \cdot x_2 + \overline{x_1} \cdot x_2 \cdot x_3}
             \end{equation*}
         \item siehe b)
         \item 
