@@ -162,7 +162,69 @@
                     \draw (nand.out) -| (7,1.5);
                 \end{circuitikz}
             \end{figure}
-        \item %TODO
+        \item C-Mos-Schaltung
+            \begin{figure}[H]
+                \centering
+                \begin{circuitikz}
+                    %AND
+                    \node at (0, 2) (x2) {$x_2$};
+                    \node at (0, 4) (x3) {$x_3$};
+                    \node [pmos] at (2,6)(andp0){};
+                    \node [nmos] at (2,4)(andn0){};
+                    \node [nmos] at (2,2)(andn1){};
+                    \node [pmos] at (4,8)(andp1){};
+                    \node [rground] at (2,0)(gnd0){};
+                    \draw (x2) -| (andn1.G);
+                    \draw (x3) -| (andn0.G);
+                    \draw (x3) |- (andp0.G);
+                    \draw (x2) to[short, -*] (1,2) |- (andp1.G);
+                    \draw (andp0.D) -- (andn0.D);
+                    \draw (andn0.S) -- (andn1.D);
+                    \draw (2,5) to[short, -*] (5,5);
+                    \draw (andp1.D) to[short, -*] (4,5);
+                    \draw (gnd0) -| (andn1.D);
+                    \node [vcc] at (2,9) (vcc0){};
+                    \draw (andp0.S) to[short, -*] (vcc0);
+                    \draw (andp1.S) |- (vcc0);
+                    \node [pmos] at (7,6)(andp2){};
+                    \node [nmos] at (7,4)(andn2){};
+                    \draw (5,5) |- (andp2.G);
+                    \draw (5,5) |- (andn2.G);
+                    \draw (andp2.D) |- (andn2.D);
+                    \draw (andp2.S) |- (4,9);
+                    \draw (4,9) to[short, -*] (4,9);
+                    \draw (andn2.S) |- (gnd0);
+                    \draw (gnd0) to[short, -*] (gnd0);
+                    \draw (7,5) to[short,*-] (9,5);
+
+                    %XOR
+                    \node [pmos] at (2, 16)(xorp0){};
+                    \node [pmos] at (6, 16)(xorp1){};
+                    \node [nmos] at (2, 14)(xorn0){};
+                    \node [nmos] at (6, 14)(xorn1){};
+                    \node at (0,15)(x0){$x_0$};
+                    \node at (4,15)(x1){$x_1$};
+                    \node [vcc] at (2,18)(vcc1){};
+                    \node [rground] at (2,12)(gnd1){};
+                    \draw (vcc1) -| (xorp0.S);
+                    \draw (xorp0.D) -| (xorn0.D);
+                    \draw (xorn0.S) -| (gnd1);
+                    \draw (x0) -| (xorp0.G);
+                    \draw (x0) -| (xorn0.G);
+                    \draw (x1) -| (xorp1.G);
+                    \draw (x1) -| (xorn1.G);
+                    \draw (x0) |- (xorp1.S);
+                    \draw (2,15) to[short,*-] (3,15) |- (xorn1.S);
+                    \draw (xorp1.D) |- (xorn1.D);
+                    \draw (6,15) -| (8,15);
+
+                    % NAND
+                    \node [pmos] at (10,12)(nandp0){};
+                    \node [pmos] at (12,12)(nandp1){};
+                    \node [nmos] at (11,10)(nandn0){};
+                    \node [nmos] at (11,8)(nandn1){};
+                \end{circuitikz}
+            \end{figure}
     \end{enumerate}
 
     \subsection{}
