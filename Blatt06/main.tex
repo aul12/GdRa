@@ -117,7 +117,10 @@
             \begin{equation*}
                 f(x) = \maxTerm{1}{0}{0}{0} \cdot \maxTerm{0}{1}{0}{0}
             \end{equation*}
-        \item Gatterschaltung: %TODO machen wir hier alles richtig? Das wird viel zu groß
+        \item Gatterschaltung: 
+            Folgende Gatterschaltung zeigt nur den Aufbau für einen der Minterme (konkret für den ersten Minterm). Bei den anderen Mintermen
+            werden logischerweise nicht alle Eingänge invertiert. Die komplette Schaltung erhält man, indem man alle diese Minterme mit einem großen
+            ODER-Gatter zusammenschaltet. Da diese Schaltung gigantisch wird, ist sie hier nicht vollständig abgebildet.
             \begin{figure}[H]
                 \centering
                 \begin{circuitikz}
@@ -137,7 +140,9 @@
                 \end{circuitikz}
             \end{figure}
         \item
-            Aus Logiktabelle:
+            Aus der Logiktabelle ergibt sich:
+            Die Funktion ist nur bei $x_{10}=7 \lor x_{10}=11$ null. Hierbei gilt in beiden Fällen $x_0 = x_1 = 1$ und $x_2 = 1 \ \dot{\lor} \ x_3 = 1$.
+            Daraus folgt für die Funktion:
             \begin{equation*}
                 f_\text{Min} = \overline{(x_2 \cdot x_3) \cdot (x_0 \oplus x_1)}
             \end{equation*}
@@ -246,17 +251,17 @@
 
     \subsection{}
     \begin{enumerate}[label = (\alph*)]
-        \item Bei n- bzw. p-Mos Schaltungen fließt in dem Fall das der Ausgang auf
-            \textit{GND} liegt fließt durch den Pull-Up Widerstand ein Strom.
-            Dieser Strom sorgt für einen erhöhten Stromverbrauch und damit verbunden
-            thermische Probleme wenn viele Logikelemente auf kleinem Raum realisiert werden.
+        \item Bei n- bzw. p-Mos Schaltungen fließt in dem Fall, dass der Ausgang der Schaltung auf
+            \textit{GND} liegt, dauerhaft ein Strom durch den Pull-Up Widerstand.
+            Dieser Strom sorgt für einen erhöhten Energieverbrauch und damit zu 
+            thermischen Problemen, wenn viele Logikelemente auf kleinem Raum realisiert werden.
 
             Zudem muss eine Kompromiss bei der Dimensionierung des Pull-Up Widerstandes
-            eingegangen werden, bei zu kleinem Widerstand fließt ein sehr großer Strom,
+            eingegangen werden: Bei zu kleinem Widerstand fließt ein sehr großer Strom,
             bei zu großem Widerstand kann das Gatter nicht mehr funktionieren wenn
             der Ausgang gegen \textit{GND} gezogen wird.
 
-            Des weiteren sind Widerständer schwierig auf die Größenordnung von MOS-Transitoren
+            Des weiteren ist es schwierig, Widerstände auf die Größenordnung von MOS-Transitoren
             zu verkleineren. Außerdem führt die vergleichsweise große physikalische Ausdehnung
             von Widerständen bei hohen Taktraten zu Problemen durch die parasitären
             Kapazitäten und Induktivitäten eines Widerstandes.
@@ -280,9 +285,11 @@
                 \end{tabular}
             \end{table}
             Daraus folgt:
-            \begin{equation*}
-                f(x_1, x_2, x_3) = \overline{x_1 \cdot x_2 + \overline{x_1} \cdot x_2 \cdot x_3}
-            \end{equation*}
+            \begin{eqnarray*}
+                f(x_1, x_2, x_3) &=& \overline{x_1 x_2 \overline{x_3} + \overline{x_1} x_2 x_3 + x_1 x_2 x_3} \\
+                &=& \overline{x_1 x_2 \cdot (\overline{x_3} + x_3) + \overline{x_1} x_2 x_3} \\
+                &=& \overline{x_1 \cdot x_2 + \overline{x_1} \cdot x_2 \cdot x_3}
+            \end{eqnarray*}
         \item siehe b)
         \item 
             P-Mos Schaltung:
