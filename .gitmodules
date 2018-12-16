@@ -1,0 +1,3 @@
+[submodule "Blatt07/QuineMcCluskey"]
+	path = Blatt07/QuineMcCluskey
+	url = git@github.com:aul12/QuineMcCluskey.git

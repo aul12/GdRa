@@ -34,6 +34,10 @@ script:
     - latexmk -pdf main.tex
     - mv main.pdf ../output/Blatt06.pdf
     - cd ..
+    - cd Blatt07
+    - zip -r -9 Blatt07.zip QuineMcCluskey
+    - mv Blatt07.zip ../output/Blatt07.zip
+    - cd ..
 
 
 deploy:
