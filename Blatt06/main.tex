@@ -11,12 +11,12 @@
 \usepackage{xcolor}
 \usepackage{booktabs}
 \usepackage{float}
+\usepackage[european]{circuitikz}
 \usepackage{tikz-timing}
 \usepackage{tikz}
 \usepackage{multirow}
 \usepackage{colortbl}
 \usepackage{xstring}
-\usepackage[european]{circuitikz}
 \usepackage{ifthen}
 
 \usetikzlibrary{calc,shapes.multipart,chains,arrows}
@@ -188,7 +188,7 @@
                     \draw (2,5) to[short, -*] (5,5);
                     \draw (andp1.D) to[short, -*] (4,5);
                     \draw (gnd0) -| (andn1.D);
-                    \node [vcc] at (2,9) (vcc0){};
+                    \node [vcc] at (2,9)(vcc0){};
                     \draw (andp0.S) to[short, -*] (vcc0);
                     \draw (andp1.S) |- (vcc0);
                     \node [pmos] at (7,6)(andp2){};

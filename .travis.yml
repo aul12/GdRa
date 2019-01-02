@@ -10,31 +10,31 @@ git:
 script:
     - mkdir output
     - cd Blatt00
-    - latexmk -pdf main.tex
+    - latexmk -pdf -silent main.tex
     - mv main.pdf ../output/Blatt00.pdf
     - cd ..
     - cd Blatt01
-    - latexmk -pdf main.tex
+    - latexmk -pdf -silent main.tex
     - mv main.pdf ../output/Blatt01.pdf
     - cd ..
     - cd Blatt02
-    - latexmk -pdf main.tex
+    - latexmk -pdf -silent main.tex
     - mv main.pdf ../output/Blatt02.pdf
     - cd ..
     - cd Blatt03
-    - latexmk -pdf main.tex
+    - latexmk -pdf -silent main.tex
     - mv main.pdf ../output/Blatt03.pdf
     - cd ..
     - cd Blatt04
-    - latexmk -pdf main.tex
+    - latexmk -pdf -silent main.tex
     - mv main.pdf ../output/Blatt04.pdf
     - cd ..
     - cd Blatt05
-    - latexmk -pdf main.tex
+    - latexmk -pdf -silent main.tex
     - mv main.pdf ../output/Blatt05.pdf
     - cd ..
     - cd Blatt06
-    - latexmk -pdf main.tex
+    - latexmk -pdf -silent main.tex
     - mv main.pdf ../output/Blatt06.pdf
     - cd ..
 
