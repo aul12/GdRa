@@ -1,0 +1,123 @@
+\documentclass[DIN, pagenumber=false, fontsize=11pt, parskip=half]{scrartcl}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc} % this is needed for umlauts
+\usepackage[ngerman]{babel} % this is needed for umlauts
+\usepackage[T1]{fontenc} 
+\usepackage{commath}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{tikz-timing}
+\usepackage{tikz}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{xstring}
+\usepackage{circuitikz}
+
+\usetikzlibrary{calc,shapes.multipart,chains,arrows}
+
+\title{Grundlagen der Rechnerarchitektur}
+\author{Tim Luchterhand, Paul Nykiel (Abgabegruppe 117)}
+
+\newcommand{\boolshitKgV}[1]{\text{kgV}(#1,30) &=& 30\\}
+\newcommand{\boolshitggT}[1]{\text{ggT}(#1,30) &=& #1\\}
+\newcommand{\minTerm}[4]{
+    \IfEqCase{#1}{
+        {0}{\overline{x_0}\ }
+        {1}{x_0}
+    }
+    \IfEqCase{#2}{
+        {0}{\overline{x_1}\ }
+        {1}{x_1}
+    }
+    \IfEqCase{#3}{
+        {0}{\overline{x_2}\ }
+        {1}{x_2}
+    }
+    \IfEqCase{#4}{
+        {0}{\overline{x_3}\ }
+        {1}{x_3}
+    }[\PackageError{minTerm}{Values must either be 0 or 1}]
+}
+
+\newcommand{\maxTerm}[4]{
+    (
+    \IfEqCase{#1}{
+        {0}{\overline{x_0} + }
+        {1}{x_0 + }
+    }
+    \IfEqCase{#2}{
+        {0}{\overline{x_1} + }
+        {1}{x_1 + }
+    }
+    \IfEqCase{#3}{
+        {0}{\overline{x_2} + }
+        {1}{x_2 + }
+    }
+    \IfEqCase{#4}{
+        {0}{\overline{x_3}}
+        {1}{x_3}
+    }[\PackageError{minTerm}{Values must either be 0 or 1}]
+    )
+}
+
+\begin{document}
+    \maketitle
+    \section{Umcodierer}
+    \subsection{}
+    \begin{enumerate}[label=(\alph*)]
+        \item
+            \begin{figure}[H]
+                \centering
+                \begin{tabular}{ccc|cccccccc}
+                    \toprule
+                    $x_2$ &$x_1$ & $x_0$ & $y_7$ & $y_6$ & $y_5$ & $y_4$ & $y_3$ & $y_2$ & $y_1$ & $y_0$ \\
+                    \midrule
+                    0 & 0 & 0  &  0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+                    0 & 0 & 1  &  0 & 0 & 0 & 0 & 0 & 0 & 1 & 0\\
+                    0 & 1 & 0  &  0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
+                    0 & 1 & 1  &  0 & 0 & 0 & 0 & 1 & 0 & 0 & 0\\
+                    1 & 0 & 0  &  0 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
+                    1 & 0 & 1  &  0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
+                    1 & 1 & 0  &  0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
+                    1 & 1 & 1  &  1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+                    \bottomrule
+                \end{tabular}
+            \end{figure}
+        \item
+            Schaltfunktionen:
+            \begin{eqnarray*}
+                y_0 = \overline{x_2} \cdot \overline{x_1} \cdot \overline{x_0} \\
+                y_1 = \overline{x_2} \cdot \overline{x_1} \cdot x_0 \\
+                y_2 = \overline{x_2} \cdot x_1 \cdot \overline{x_0} \\
+                y_3 = \overline{x_2} \cdot x_1 \cdot x_0 \\
+                y_4 = x_2 \cdot \overline{x_1} \cdot \overline{x_0} \\
+                y_5 = x_2 \cdot \overline{x_1} \cdot x_0 \\
+                y_6 = x_2 \cdot x_1 \cdot \overline{x_0} \\
+                y_7 = x_2 \cdot x_1 \cdot x_0 \\
+            \end{eqnarray*}
+            Gatterschaltungen:
+            \begin{figure}[H]
+                \centering
+                \begin{circuitikz}
+                    \node at(0,0) (){$x_0$};
+                    \node at(0,1) (){$x_1$};
+                    \node at(0,2) (){$x_2$};
+                    \node at(7,1.5) {$y_0$};
+                    \node[european and port] at (4,0.5) (and00){};
+                    \node[european and port] at (6,1.5) (and01){};
+                    \node[european not port] at (2,0) (not00){};
+                    \node[european not port] at (2,1) (not01){};
+                    \node[european not port] at (2,2) (not02){};
+                    \draw (and00.out) -| (and01.in 2);
+                    \draw (not00.out) -| (and00.in 2);
+                    \draw (not01.out) -| (and00.in 1);
+                    \draw (not02.out) -| (and01.in 1);
+                \end{circuitikz}
+            \end{figure}
+    \end{enumerate}
+\end{document}

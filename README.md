@@ -9,4 +9,6 @@ Lösungen zu den Übungsblättern der Vorlesung "Grundlagen der Rechnerarchitekt
  * [Blatt03.pdf](https://aul12.github.io/GdRa/Blatt03.pdf)
  * [Blatt04.pdf](https://aul12.github.io/GdRa/Blatt04.pdf)
  * [Blatt05.pdf](https://aul12.github.io/GdRa/Blatt05.pdf)
- * [Blatt06.pdf](https://aul12.github.io/GdRa/Blatt06.pdf)
+ * Blatt06 kompiliert nicht
+ * Blatt07: Quine McCluskey
+ * [Blatt08.pdf](https://aul12.github.io/GdRa/Blatt08.pdf)

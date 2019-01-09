@@ -33,9 +33,9 @@ script:
     - latexmk -pdf -silent main.tex
     - mv main.pdf ../output/Blatt05.pdf
     - cd ..
-    - cd Blatt06
+    - cd Blatt08
     - latexmk -pdf -silent main.tex
-    - mv main.pdf ../output/Blatt06.pdf
+    - mv main.pdf ../output/Blatt08.pdf
     - cd ..
 
 
