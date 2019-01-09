@@ -103,4 +103,63 @@
             Gatterschaltungen:
             \input{bullshit} % You don't really want to see this
     \end{enumerate}
+
+    \subsection{}
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+            Gray-Codierung:
+            \begin{figure}[H]
+                \centering
+                \begin{tabular}{ccc|ccc}
+                    \toprule
+                    $x_2$ & $x_1$ & $x_0$ & $y_2$ & $y_1$ & $y_0$ \\
+                    \midrule
+                    0 & 0 & 0 & 0 & 0 & 0\\
+                    0 & 0 & 1 & 0 & 0 & 1\\
+                    0 & 1 & 0 & 0 & 1 & 1\\
+                    0 & 1 & 1 & 1 & 1 & 1\\
+                    1 & 0 & 0 & 1 & 0 & 1\\
+                    1 & 0 & 1 & 1 & 0 & 0\\
+                    1 & 1 & 0 & 1 & 1 & 0\\
+                    1 & 1 & 1 & 0 & 1 & 0\\
+                    \bottomrule
+                \end{tabular}
+            \end{figure}
+        \item TODO
+        \item Wenn Grey-Codierte Daten über einen Kanal übertragen werden und
+            es zu Fehlern kommt (zum Beispiel durch Rauschen oder ungenaue Messungen), so ist das decodierte Codewort in fast allen Fällen nur um ein
+            Byte gegenüber dem gesendeten Codewort falsch. Bei \glqq{}normaler\grqq{} Codierung treten Fehler in Codewörtern die mehrere Bits des decodierten Codeworts betreffen auch schon bei kleinen Fehlern auf.
+        \item 
+            Ausgehend von der DKNF mit Quine-McCluskey:
+            \begin{eqnarray*}
+                y_0(x_0, x_1, _2) &=& 
+                \overline{x_2} \cdot \overline{x_1} \cdot x_0 + 
+                \overline{x_2} \cdot x_1 \cdot \overline{x_0} +
+                \overline{x_2} \cdot x_1 \cdot x_0 +
+                x_2 \cdot \overline{x_1} \cdot \overline{x_0} \\
+                &=& (\overline{x_2} \cdot \overline{x_1} \cdot x_0 + 
+                \overline{x_2} \cdot x_1 \cdot x_0) +
+                (\overline{x_2} \cdot x_1 \cdot \overline{x_0} +
+                x_2 \cdot \overline{x_1} \cdot \overline{x_0}) \\
+                &=& \overline{x_2} \cdot x_0 +
+                \overline{x_0} \cdot (x_2 \cdot \overline{x_1} + \overline{x_2} \cdot x_1) \\
+                &=& \overline{x_2} \cdot x_0 + \overline{x_0} \cdot (x_1 \oplus x_2)
+            \end{eqnarray*}
+    \end{enumerate}
+
+    \subsection{}
+    \begin{enumerate}[label=(\alph*)]
+        \item 
+            \begin{figure}[H]
+                \centering
+                \begin{tabular}{c|cccc|cccc}
+                    \toprule
+                    Dezimal & \multicolumn{4}{c|}{Binär} & \multicolumn{4}{c}{Aiken-Code} \\
+                    $d$ & $x_3$ & $x_2$ & $x_1$ & $x_0$ & $y_3$ & $y_2$ & $y_1$ & $y_0$ \\
+                    \midrule
+
+                    \bottomrule
+                \end{tabular}
+            \end{figure}
+    \end{enumerate}
 \end{document}
