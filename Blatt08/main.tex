@@ -101,23 +101,6 @@
                 y_7 = x_2 \cdot x_1 \cdot x_0 \\
             \end{eqnarray*}
             Gatterschaltungen:
-            \begin{figure}[H]
-                \centering
-                \begin{circuitikz}
-                    \node at(0,0) (){$x_0$};
-                    \node at(0,1) (){$x_1$};
-                    \node at(0,2) (){$x_2$};
-                    \node at(7,1.5) {$y_0$};
-                    \node[european and port] at (4,0.5) (and00){};
-                    \node[european and port] at (6,1.5) (and01){};
-                    \node[european not port] at (2,0) (not00){};
-                    \node[european not port] at (2,1) (not01){};
-                    \node[european not port] at (2,2) (not02){};
-                    \draw (and00.out) -| (and01.in 2);
-                    \draw (not00.out) -| (and00.in 2);
-                    \draw (not01.out) -| (and00.in 1);
-                    \draw (not02.out) -| (and01.in 1);
-                \end{circuitikz}
-            \end{figure}
+            \input{bullshit} % You don't really want to see this
     \end{enumerate}
 \end{document}
