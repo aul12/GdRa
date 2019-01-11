@@ -17,6 +17,7 @@
 \usepackage{colortbl}
 \usepackage{xstring}
 \usepackage{circuitikz}
+\usepackage{graphicx}
 
 \usetikzlibrary{calc,shapes.multipart,chains,arrows}
 
@@ -125,7 +126,12 @@
                     \bottomrule
                 \end{tabular}
             \end{figure}
-        \item TODO
+        \item 
+            Codescheibe für Gray-Codierung:
+            \begin{figure}[H]
+                \centering
+                \includegraphics[width=5cm]{Scheibe.eps}
+            \end{figure}
         \item Wenn Grey-Codierte Daten über einen Kanal übertragen werden und
             es zu Fehlern kommt (zum Beispiel durch Rauschen oder ungenaue Messungen), so ist das decodierte Codewort in fast allen Fällen nur um ein
             Byte gegenüber dem gesendeten Codewort falsch. Bei \glqq{}normaler\grqq{} Codierung treten Fehler in Codewörtern die mehrere Bits des decodierten Codeworts betreffen auch schon bei kleinen Fehlern auf.
