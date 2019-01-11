@@ -72,6 +72,7 @@
     \subsection{}
     \begin{enumerate}[label=(\alph*)]
         \item
+			Wahrheitstabelle:
             \begin{figure}[H]
                 \centering
                 \begin{tabular}{ccc|cccccccc}
@@ -134,7 +135,8 @@
             \end{figure}
         \item Wenn Grey-Codierte Daten über einen Kanal übertragen werden und
             es zu Fehlern kommt (zum Beispiel durch Rauschen oder ungenaue Messungen), so ist das decodierte Codewort in fast allen Fällen nur um ein
-            Byte gegenüber dem gesendeten Codewort falsch. Bei \glqq{}normaler\grqq{} Codierung treten Fehler in Codewörtern die mehrere Bits des decodierten Codeworts betreffen auch schon bei kleinen Fehlern auf.
+            Bit gegenüber dem gesendeten Codewort falsch. Bei \glqq{}normaler\grqq{} Codierung treten Fehler in Codewörtern, die mehrere Bits des decodierten Codeworts betreffen, auch schon bei kleinen Fehlern auf.
+			Im konkreten Beispiel der angegebenen Codescheibe kann es passieren, dass die Scheibe um einen falschen Winkel gedreht wird. Nehmen wir an, eine 3 (also in binär 011) wird \glqq{}gesendet\grqq{}, jedoch eine 4 \glqq{}empfangen\grqq{}. Der Fehler beträgt dann 3 Bit. Bei einer Gray-Codierung kann der selbe Winkelfehler maximal einen Datenfehler von einem Bit bedeuten.
         \item 
             Ausgehend von der DKNF mit Quine-McCluskey:
             \begin{eqnarray*}
@@ -155,7 +157,7 @@
 
     \subsection{}
     \begin{enumerate}[label=(\alph*)]
-        \item 
+        \item Wertetabelle:
             \begin{figure}[H]
                 \centering
                 \begin{tabular}{c|cccc|cccc}
@@ -163,9 +165,117 @@
                     Dezimal & \multicolumn{4}{c|}{Binär} & \multicolumn{4}{c}{Aiken-Code} \\
                     $d$ & $x_3$ & $x_2$ & $x_1$ & $x_0$ & $y_3$ & $y_2$ & $y_1$ & $y_0$ \\
                     \midrule
-
+					0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+					1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 \\
+					2 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 \\
+					3 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 \\
+					4 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 \\
+					5 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 \\
+					6 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 0 \\
+					7 & 0 & 1 & 1 & 1 & 1 & 1 & 0 & 1 \\
+					8 & 1 & 0 & 0 & 0 & 1 & 1 & 1 & 0 \\
+					9 & 1 & 0 & 0 & 1 & 1 & 1 & 1 & 1 \\
+					10 & 1 & 0 & 1 & 0 & - & - & - & - \\
+					11 & 1 & 0 & 1 & 1 & - & - & - & - \\
+					12 & 1 & 1 & 0 & 0 & - & - & - & - \\
+					13 & 1 & 1 & 0 & 1 & - & - & - & - \\
+					14 & 1 & 1 & 1 & 0 & - & - & - & - \\
+					15 & 1 & 1 & 1 & 1 & - & - & - & - \\
                     \bottomrule
                 \end{tabular}
             \end{figure}
+		Die Zahlen 10 bis 15 sind nicht mit einem 4-Bit Aiken-Code darstellbar.
+		\item 
+		\begin{eqnarray*}
+			y_0 &=& \minTerm{1}{0}{0}{0} + \minTerm{1}{1}{0}{0} + \minTerm{1}{0}{1}{0} + \minTerm{1}{1}{1}{0} + \minTerm{1}{0}{0}{1} \\
+			y_1 &=& \minTerm{0}{1}{0}{0} + \minTerm{1}{1}{0}{0} + \minTerm{1}{0}{1}{0} + \minTerm{0}{0}{0}{1} + \minTerm{1}{0}{0}{1} \\
+			y_2 &=& \minTerm{0}{0}{1}{0} + \minTerm{0}{1}{1}{0} + \minTerm{1}{1}{1}{0} + \minTerm{0}{0}{0}{1} + \minTerm{1}{0}{0}{1} \\
+			y_3 &=& \minTerm{1}{0}{1}{0} + \minTerm{0}{1}{1}{0} + \minTerm{1}{1}{1}{0} + \minTerm{0}{0}{0}{1} + \minTerm{1}{0}{0}{1} \\
+		\end{eqnarray*}
+		\item 
+			KV-Diagramm für $y_0$:
+			\begin{figure}[H]
+                \centering
+                \begin{tabular}{cc|cccc|cc}
+                    & &  & \multicolumn{2}{c}{$x_0$} & & \\
+                    & & 0 & 1 & 1 & 0\\
+                    \midrule
+                    \multirow{4}{*}{$x_1$} & 0 & 0 & \cellcolor{blue!50}1 & \cellcolor{blue!50}1 & 0 & 0 &\multirow{4}{*}{$x_3$}\\
+                     & 1 & 0 & \cellcolor{blue!50}1 & \cellcolor{blue!50}1 & 0 & 0\\
+                     & 1 & X & \cellcolor{blue!50}X & \cellcolor{blue!50}X & X & 1\\
+                     & 0 & 0 & \cellcolor{blue!50}1 & \cellcolor{blue!50}X & X & 1\\
+                    \midrule
+                    & & 0 & 0 & 1 & 1\\
+                    & &  & \multicolumn{2}{c}{$x_2$} & & \\
+                \end{tabular}
+            \end{figure}
+			Daraus folgt:
+			\begin{equation*}
+				y_0 = x_0
+			\end{equation*}
+
+			KV-Diagramm für $y_1$:
+			\begin{figure}[H]
+                \centering
+                \begin{tabular}{cc|cccc|cc}
+                    & &  & \multicolumn{2}{c}{$x_0$} & & \\
+                    & & 0 & 1 & 1 & 0\\
+                    \midrule
+                    \multirow{4}{*}{$x_1$} & 0 & 0 & 0 & \cellcolor{green!50}1 & 0 & 0 &\multirow{4}{*}{$x_3$}\\
+                     & 1 & \cellcolor{blue!50}1 & \cellcolor{blue!50}1 & 0 & 0 & 0\\
+                     & 1 & \cellcolor{purple!50}X & \cellcolor{purple!50}X & X & X & 1\\
+                     & 0 & \cellcolor{red!50}1 & \cellcolor{red!50}1 & \cellcolor{green!50}X & X & 1\\
+                    \midrule
+                    & & 0 & 0 & 1 & 1\\
+                    & &  & \multicolumn{2}{c}{$x_2$} & & \\
+                \end{tabular}
+            \end{figure}
+			Daraus folgt:
+			\begin{equation*}
+				y_1 = \textcolor{blue}{x_1 \cdot \overline{x_2}} + \textcolor{red}{\overline{x_2} \cdot x_3} + \textcolor{green}{x_0 \cdot \overline{x_1} \cdot x_2}
+			\end{equation*}
+
+			KV-Diagramm für $y_2$:
+			\begin{figure}[H]
+                \centering
+                \begin{tabular}{cc|cccc|cc}
+                    & &  & \multicolumn{2}{c}{$x_0$} & & \\
+                    & & 0 & 1 & 1 & 0\\
+                    \midrule
+                    \multirow{4}{*}{$x_1$} & 0 & 0 & 0 & 0 & \cellcolor{green!50}1 & 0 &\multirow{4}{*}{$x_3$}\\
+                     & 1 & 0 & 0 & \cellcolor{red!50}1 & \cellcolor{yellow!50}1 & 0\\
+                     & 1 & \cellcolor{blue!50}X & \cellcolor{blue!50}X & \cellcolor{purple!50}X & \cellcolor{purple!50}X & 1\\
+                     & 0 & \cellcolor{blue!50}1 & \cellcolor{blue!50}1 & \cellcolor{blue!50}X & \cellcolor{blue!50}X & 1\\
+                    \midrule
+                    & & 0 & 0 & 1 & 1\\
+                    & &  & \multicolumn{2}{c}{$x_2$} & & \\
+                \end{tabular}
+            \end{figure}
+			Daraus folgt:
+			\begin{equation*}
+				y_2 = \textcolor{blue}{x_3} + \textcolor{red}{x_1 \cdot x_2} + \textcolor{green}{\overline{x_0} \cdot x_2 \cdot \overline{x_3}}
+			\end{equation*}
+
+			KV-Diagramm für $y_3$:
+			\begin{figure}[H]
+                \centering
+                \begin{tabular}{cc|cccc|cc}
+                    & &  & \multicolumn{2}{c}{$x_0$} & & \\
+                    & & 0 & 1 & 1 & 0\\
+                    \midrule
+                    \multirow{4}{*}{$x_1$} & 0 & 0 & 0 & \cellcolor{green!50}1 & 0 & 0 &\multirow{4}{*}{$x_3$}\\
+                     & 1 & 0 & 0 & \cellcolor{yellow!50}1 & \cellcolor{red!50}1 & 0\\
+                     & 1 & \cellcolor{blue!50}X & \cellcolor{blue!50}X & \cellcolor{purple!50}X & \cellcolor{purple!50}X & 1\\
+                     & 0 & \cellcolor{blue!50}1 & \cellcolor{blue!50}1 & \cellcolor{blue!50}X & \cellcolor{blue!50}X & 1\\
+                    \midrule
+                    & & 0 & 0 & 1 & 1\\
+                    & &  & \multicolumn{2}{c}{$x_2$} & & \\
+                \end{tabular}
+            \end{figure}
+			Daraus folgt:
+			\begin{equation*}
+				y_3 = \textcolor{blue}{x_3} + \textcolor{red}{x_1 \cdot x_2} + \textcolor{green}{x_0 \cdot x_2 \cdot \overline{x_3}}
+			\end{equation*}
     \end{enumerate}
 \end{document}
+
