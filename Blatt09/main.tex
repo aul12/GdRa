@@ -23,49 +23,18 @@
 \title{Grundlagen der Rechnerarchitektur}
 \author{Tim Luchterhand, Paul Nykiel (Abgabegruppe 117)}
 
-\newcommand{\boolshitKgV}[1]{\text{kgV}(#1,30) &=& 30\\}
-\newcommand{\boolshitggT}[1]{\text{ggT}(#1,30) &=& #1\\}
-\newcommand{\minTerm}[4]{
-    \IfEqCase{#1}{
-        {0}{\overline{x_0}\ }
-        {1}{x_0}
-    }
-    \IfEqCase{#2}{
-        {0}{\overline{x_1}\ }
-        {1}{x_1}
-    }
-    \IfEqCase{#3}{
-        {0}{\overline{x_2}\ }
-        {1}{x_2}
-    }
-    \IfEqCase{#4}{
-        {0}{\overline{x_3}\ }
-        {1}{x_3}
-    }[\PackageError{minTerm}{Values must either be 0 or 1}]
-}
-
-\newcommand{\maxTerm}[4]{
-    (
-    \IfEqCase{#1}{
-        {0}{\overline{x_0} + }
-        {1}{x_0 + }
-    }
-    \IfEqCase{#2}{
-        {0}{\overline{x_1} + }
-        {1}{x_1 + }
-    }
-    \IfEqCase{#3}{
-        {0}{\overline{x_2} + }
-        {1}{x_2 + }
-    }
-    \IfEqCase{#4}{
-        {0}{\overline{x_3}}
-        {1}{x_3}
-    }[\PackageError{minTerm}{Values must either be 0 or 1}]
-    )
-}
-
 \begin{document}
     \maketitle
+    \section{}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{StateMachine.eps}
+    \end{figure}
+
+    \section{}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{Transitionen.eps}
+    \end{figure}
 \end{document}
 
