@@ -13,3 +13,4 @@ Lösungen zu den Übungsblättern der Vorlesung "Grundlagen der Rechnerarchitekt
  * Blatt07: Quine McCluskey
  * [Blatt08.pdf](https://aul12.github.io/GdRa/Blatt08.pdf)
  * [Blatt09.pdf](https://aul12.github.io/GdRa/Blatt09.pdf)
+ * [Blatt10.pdf](https://aul12.github.io/GdRa/Blatt10.pdf)
