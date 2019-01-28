@@ -33,7 +33,7 @@
                 \begin{tabular}{c|ccc|ccc}
                     \toprule
                     Flanke & $\text{state}_2[t]$ & $\text{state}_1[t]$ & $\text{state}_0[t]$ & $\text{state}_2[t+1]$ & $\text{state}_1[t+1]$ & $\text{state}_0[t+1]$ \\
-                    \midrule
+                    midrule
                     0 & 0 & 0 & 0 & 0 & 0 & 0\\
                     0 & 0 & 0 & 1 & 0 & 0 & 1\\
                     0 & 0 & 1 & 0 & 0 & 1 & 0\\
@@ -153,6 +153,86 @@
                     \draw (and4.out) -| (and6.in 2);
                     \draw (and5.out) -| (and6.in 1);
                     \draw (s21) -| (and5.in 1);
+                \end{circuitikz}
+            \end{figure}
+    \end{enumerate}
+
+    \section{Addierer und Subtrahierer}
+    \begin{enumerate}[label=(\alph*)]
+        \item $ $
+            \begin{figure}[H]
+                \centering
+                \begin{tabular}{ccc|cc}
+                    \toprule
+                    $a$ & $b$ & $c_{-1}$ & $c$ & $s$\\
+                    \midrule
+                    0 & 0 & 0 & 0 & 0 \\ 
+                    0 & 1 & 0 & 0 & 1 \\ 
+                    1 & 0 & 0 & 0 & 1 \\ 
+                    1 & 1 & 0 & 1 & 0 \\ 
+                    0 & 0 & 1 & 0 & 1 \\ 
+                    0 & 1 & 1 & 1 & 0 \\ 
+                    1 & 0 & 1 & 1 & 0 \\ 
+                    1 & 1 & 1 & 1 & 1 \\ 
+                    \bottomrule
+                \end{tabular}
+            \end{figure}
+            \begin{eqnarray*}
+                c &=& a \cdot b \cdot \overline{c_{-1}} + \overline{a} \cdot b \cdot c_{-1} + a \cdot \overline{b} \cdot c_{-1} + a \cdot b \cdot c_{-1} \\
+                &=& a \cdot b + c_{-1} \cdot (\overline{a} \cdot b + a \cdot \overline{b}) \\
+                &=& a \cdot b + c_{-1} \cdot (a \oplus b) 
+            \end{eqnarray*}
+
+            \begin{eqnarray*}
+                s &=& \overline{a} \cdot b \cdot \overline{c_{-1}} + a \cdot \overline{b} \cdot \overline{c_{-1}} + \overline{a} \cdot \overline{b} \cdot c_{-1} + a \cdot b \cdot c \\
+                &=& \overline{a} \cdot (b \cdot \overline{c_{-1}} + \overline{b} \cdot c_{-1}) + a \cdot (\overline{b} \cdot \overline{c} + b \cdot c) \\
+                &=& \overline{a} \cdot (b \oplus c_{-1}) + a \cdot \overline{(b \oplus c_{-1})} \\
+                &=& a \oplus b \oplus c
+            \end{eqnarray*}
+
+        \item $ $
+            \begin{figure}[H]
+                \centering
+                \begin{circuitikz}
+                    \node[european xor port] at (3,2) (xor){};
+                    \node[european and port] at (5,0) (and1){};
+                    \node[european and port] at (5,4) (and2){};
+                    \node[european or port] at (7,2) (or){};
+                    \node at(0,-1) (c) {$c_{-1}$};
+                    \node at(0,2.5) (a0) {$a$};
+                    \node at(0,1.5) (b0) {$b$};
+                    \node at(2,4.5) (a1) {$a$};
+                    \node at(2,3.5) (b1) {$b$};
+                    \node at(8,2) () {$c$};
+                    \draw (c) -| (and1.in 2);
+                    \draw (a0) -| (xor.in 1);
+                    \draw (b0) -| (xor.in 2);
+                    \draw (a1) -| (and2.in 1);
+                    \draw (b1) -| (and2.in 2);
+                    \draw (xor.out) -| (and1.in 1);
+                    \draw (and1.out) -| (or.in 2);
+                    \draw (and2.out) -| (or.in 1);
+                \end{circuitikz}
+            \end{figure}
+            \begin{figure}[H]
+                \centering
+                \begin{circuitikz}
+                    \node[european xor port] at (3,1) (xor1){};
+                    \node[european xor port] at (5,2) (xor2){};
+                    \node at(0,0) (a) {$a$};
+                    \node at(0,1.5) (b) {$b$};
+                    \node at(0,3) (c) {$c$};
+                    \node at(6,2) (){$s$};
+                    \draw (a) -| (xor1.in 2);
+                    \draw (b) -| (xor1.in 1);
+                    \draw (xor1.out) -| (xor2.in 2);
+                    \draw (c) -| (xor2.in 1);
+                \end{circuitikz}
+            \end{figure}
+        \item
+            \begin{figure}[H]
+                \centering
+                \begin{circuitikz}
                 \end{circuitikz}
             \end{figure}
     \end{enumerate}
