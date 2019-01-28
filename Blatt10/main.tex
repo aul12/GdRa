@@ -33,7 +33,7 @@
                 \begin{tabular}{c|ccc|ccc}
                     \toprule
                     Flanke & $\text{state}_2[t]$ & $\text{state}_1[t]$ & $\text{state}_0[t]$ & $\text{state}_2[t+1]$ & $\text{state}_1[t+1]$ & $\text{state}_0[t+1]$ \\
-                    midrule
+                    \midrule
                     0 & 0 & 0 & 0 & 0 & 0 & 0\\
                     0 & 0 & 0 & 1 & 0 & 0 & 1\\
                     0 & 0 & 1 & 0 & 0 & 1 & 0\\
@@ -187,7 +187,7 @@
                 s &=& \overline{a} \cdot b \cdot \overline{c_{-1}} + a \cdot \overline{b} \cdot \overline{c_{-1}} + \overline{a} \cdot \overline{b} \cdot c_{-1} + a \cdot b \cdot c \\
                 &=& \overline{a} \cdot (b \cdot \overline{c_{-1}} + \overline{b} \cdot c_{-1}) + a \cdot (\overline{b} \cdot \overline{c} + b \cdot c) \\
                 &=& \overline{a} \cdot (b \oplus c_{-1}) + a \cdot \overline{(b \oplus c_{-1})} \\
-                &=& a \oplus b \oplus c
+                &=& a \oplus b \oplus c_{-1}
             \end{eqnarray*}
 
         \item $ $
@@ -221,7 +221,7 @@
                     \node[european xor port] at (5,2) (xor2){};
                     \node at(0,0) (a) {$a$};
                     \node at(0,1.5) (b) {$b$};
-                    \node at(0,3) (c) {$c$};
+                    \node at(0,3) (c) {$c_{-1}$};
                     \node at(6,2) (){$s$};
                     \draw (a) -| (xor1.in 2);
                     \draw (b) -| (xor1.in 1);
@@ -234,7 +234,7 @@
                 \centering
                 \includegraphics[width=\textwidth]{3BitAdder.eps}
             \end{figure}
-        \item Schaltbild des 3-Bit-Addierers mit Subtraktionsfunktion:
+        \item Schaltbild des 3-Bit-Addierers mit Subtraktionsfunktion. Die Schaltung aus der vorherigen Aufgabe wurde hier als Blockschaltbild verwendet:
             \begin{figure}[H]
                 \centering
                 \includegraphics[width=\textwidth]{3BitKrassesDing.eps}
