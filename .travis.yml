@@ -45,6 +45,10 @@ script:
     - make
     - mv main.pdf ../output/Blatt10.pdf
     - cd ..
+    - cd Blatt11
+    - make
+    - mv main.pdf ../output/Blatt11.pdf
+    - cd ..
 
 
 deploy:

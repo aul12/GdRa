@@ -1,0 +1,46 @@
+\documentclass[DIN, pagenumber=false, fontsize=11pt, parskip=half]{scrartcl}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc} % this is needed for umlauts
+\usepackage[ngerman]{babel} % this is needed for umlauts
+\usepackage[T1]{fontenc} 
+\usepackage{commath}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{tikz-timing}
+\usepackage{tikz}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{xstring}
+\usepackage{circuitikz}
+
+\usetikzlibrary{calc,shapes.multipart,chains,arrows}
+
+\title{Grundlagen der Rechnerarchitektur}
+\author{Tim Luchterhand, Paul Nykiel (Abgabegruppe 117)}
+
+\begin{document}
+    \maketitle
+    \section{}
+    \begin{enumerate}[label=(\alph*)]
+        \item $ $
+            \begin{figure}[H]
+                \centering
+                \begin{tabular}{lp{7cm}l}
+                    \toprule
+                    Befehlsformat & Aufbau & Verwendung \\
+                    \midrule
+                    Register/ALU-Operationen & ALU-Funktion (0-5), Verschiebung (6-10), Zielregister (11-15), Input Register 1 (16-20), Input Register 2 (21-25), OpCode (26-31) & \\
+                    Immediate Operationen & Direktoperand (0-15), Zielregister (16-20), Indexregister (21-25), OpCode (26-31) & \\
+                    Jump Befehle & Sprungziel (Bit 0-25), Opcode (Bit 26-31) & \\
+                    \bottomrule
+                \end{tabular}
+            \end{figure}
+        \item 
+            addiu \$t2, \$zero, -11 $\stackrel{\hat{}}{=}$ 9 10 0 -11 $\stackrel{\hat{}}{=}$ 001001 01010 00000 11111111 11110101
+    \end{enumerate}
+\end{document}
