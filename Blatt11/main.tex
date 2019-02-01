@@ -17,8 +17,42 @@
 \usepackage{colortbl}
 \usepackage{xstring}
 \usepackage{circuitikz}
+\usepackage{listings} % needed for the inclusion of source code
+\usepackage{mips}
+
 
 \usetikzlibrary{calc,shapes.multipart,chains,arrows}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  language=[mips]Assembler,       % the language of the code
+  basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  stepnumber=1,                   % the step between two line-numbers. If it's 1, each line
+                                  % will be numbered
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=4,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                  % also try caption instead of title
+  keywordstyle=\color{blue},          % keyword style
+  commentstyle=\color{dkgreen},       % comment style
+  stringstyle=\color{mauve},         % string literal style
+  escapeinside={\%*}{*)},            % if you want to add a comment within your code
+  morekeywords={*,...}               % if you want to add more keywords to the set
+}
 
 \title{Grundlagen der Rechnerarchitektur}
 \author{Tim Luchterhand, Paul Nykiel (Abgabegruppe 117)}
@@ -30,17 +64,44 @@
         \item $ $
             \begin{figure}[H]
                 \centering
-                \begin{tabular}{lp{7cm}l}
+                \begin{tabular}{lp{5cm}p{4cm}}
                     \toprule
                     Befehlsformat & Aufbau & Verwendung \\
                     \midrule
-                    Register/ALU-Operationen & ALU-Funktion (0-5), Verschiebung (6-10), Zielregister (11-15), Input Register 1 (16-20), Input Register 2 (21-25), OpCode (26-31) & \\
-                    Immediate Operationen & Direktoperand (0-15), Zielregister (16-20), Indexregister (21-25), OpCode (26-31) & \\
-                    Jump Befehle & Sprungziel (Bit 0-25), Opcode (Bit 26-31) & \\
+                    Register/ALU-Operationen & ALU-Funktion (Bit 0-5), Verschiebung (Bit 6-10), Zielregister (Bit 11-15), Input Register 1 (Bit 16-20), Input Register 2 (Bit 21-25), OpCode (Bit 26-31) & 
+                    Binäre Operationen mit zwei nicht konstanten Register-Operanden (z.B. add, sll) \\
+                    Immediate Operationen & Direktoperand (Bit 0-15), Zielregister (Bit 16-20), Indexregister (Bit 21-25), OpCode (Bit 26-31) & Operationen mit Konstanten oder Adressen (z.B. lw, addiu)\\
+                    Jump Befehle & Sprungziel (Bit 0-25), Opcode (Bit 26-31) & Sprungbefehle auf Basis von Adressen \\
                     \bottomrule
                 \end{tabular}
             \end{figure}
         \item 
-            addiu \$t2, \$zero, -11 $\stackrel{\hat{}}{=}$ 9 10 0 -11 $\stackrel{\hat{}}{=}$ 001001 01010 00000 11111111 11110101
+            addiu \$t2, \$zero, -11 $\hat{=}$ 9 10 0 -11 $\hat{=}$ 001001 01010 00000 11111111 11110101
+
+            addi \$t1, \$t2, 53 $\hat{=}$ 8 9 10 53 $\hat{=}$ 001000 01001 01010 00000000 00110101
+
+            add \$s0, \$t1, \$zero $\hat{=}$ 0 0 9 16 0 20 $\hat{=}$ 000000 00000 01001 10000 00000 010100
+
+        \item
+            000000 01011 10100 01010 00000 100110 $\hat{=}$ 0 11 20 10 0 38 $\hat{=}$ xor \$t2, \$s4, \$t3
+
+            000000 10010 10111 01001 00000 100010 $\hat{=}$ 0 18 23 10 0 34 $\hat{=}$ sub \$t2, \$s7, \$s2
+
+            001000 01001 10000 0001100001100101 $\hat{=}$ 8 9 16 6245 $\hat{=}$ addi \$t1, \$s0, 6245
+
+            000000 01001 01010 10000 00000 100000 $\hat{=}$ 0 9 10 16 0 32 $\hat{=}$ add \$t1, \$t2, \$s0
+        \item
+            Die Befehle unterscheiden sich im Format (Register und Immediate). Add wird genutzt, um zwei Register aufeinander zu addieren, wohingegen addi ein Register und eine Konstante addiert.
+
+        \item
+            \glqq{}The Answer to the Ultimate Question of Life, the Universe, and Everything is 42\grqq{}
+    \end{enumerate}
+
+    \section{}
+    \begin{enumerate}[label=(\alph*)]
+        \item $ $ 
+            \lstinputlisting{Aufgabe2a.asm}
+        \item $ $ 
+            \lstinputlisting{Aufgabe2b.asm}
     \end{enumerate}
 \end{document}
