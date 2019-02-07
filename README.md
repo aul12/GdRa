@@ -15,3 +15,4 @@ Lösungen zu den Übungsblättern der Vorlesung "Grundlagen der Rechnerarchitekt
  * [Blatt09.pdf](https://aul12.github.io/GdRa/Blatt09.pdf)
  * [Blatt10.pdf](https://aul12.github.io/GdRa/Blatt10.pdf)
  * [Blatt11.pdf](https://aul12.github.io/GdRa/Blatt11.pdf)
+ * [Blatt12.pdf](https://aul12.github.io/GdRa/Blatt12.pdf)
