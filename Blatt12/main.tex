@@ -19,7 +19,7 @@
 \usepackage{circuitikz}
 \usepackage{listings} % needed for the inclusion of source code
 \usepackage{mips}
-
+\usepackage[final]{pdfpages}
 
 \usetikzlibrary{calc,shapes.multipart,chains,arrows}
 
@@ -58,5 +58,5 @@
 \author{Tim Luchterhand, Paul Nykiel (Abgabegruppe 117)}
 
 \begin{document}
-    \maketitle
+    \includepdf[scale = 0.6, pagecommand={\maketitle \section{Automat}}]{automat.pdf}
 \end{document}

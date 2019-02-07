@@ -1,0 +1,52 @@
+digraph {
+    P1 -> P2 [
+        label = "Takt = 0 /\n NSA=Rot, NSF=Grün, WOA=Grün, WOF=Rot, Takt = 3"
+    ]
+    P2 -> P3 [
+        label = "Takt = 0 /\n NSA=Rot, NSF=Rot, WOA=Gelb, WOF=Rot, Takt = 2"
+    ]
+    P3 -> P4 [
+        label = "Takt = 0 /\n NSA=Rot, NSF=Rot, WOA=Rot, WOF=Rot, Takt = 3"
+    ]
+    P4 -> P5 [
+        label = "Takt = 0 /\n NSA=Rot/Gelb, NSF=Rot, WOA=Rot, WOF=Rot, Takt = 12"
+    ]
+    P5 -> P6 [
+        label = "Takt = 0 /\n NSA=Grün, NSF=Rot, WOA=Rot, WOF=Grün, Takt = 3"
+    ]
+    P6 -> P7 [
+        label = "Takt = 0 /\n NSA=Gelb, NSF=Rot, WOA=Rot, WOF=Grün, Takt = 2"
+    ]
+    P7 -> P8 [
+        label = "Takt = 0 /\n NSA=Rot, NSF=Rot, WOA=Rot, WOF=Rot, Takt = 3"
+    ]
+    P8 -> P1 [
+        label = "Takt = 0 /\n NSA=Rot, NSF=Rot, WOA=Rot/Gelb, WOF=Rot, Takt = 12"
+    ]
+
+
+    P1 -> P1 [
+        label = "Takt != 0 /\n NSA=Rot, NSF=Grün, WOA=Grün, WOF=Rot, Takt = Takt - 1"
+    ]
+    P2 -> P2 [
+        label = "Takt != 0 /\n NSA=Rot, NSF=Rot, WOA=Gelb, WOF=Rot, Takt = Takt - 1"
+    ]
+    P3 -> P3 [
+        label = "Takt != 0 /\n NSA=Rot, NSF=Rot, WOA=Rot, WOF=Rot, Takt = Takt - 1"
+    ]
+    P4 -> P4 [
+        label = "Takt != 0 /\n NSA=Rot/Gelb, NSF=Rot, WOA=Rot, WOF=Rot, Takt = Takt - 1"
+    ]
+    P5 -> P5 [
+        label = "Takt != 0 /\n NSA=Grün, NSF=Rot, WOA=Rot, WOF=Grün, Takt = Takt - 1"
+    ]
+    P6 -> P6 [
+        label = "Takt != 0 /\n NSA=Gelb, NSF=Rot, WOA=Rot, WOF=Grün, Takt = Takt - 1"
+    ]
+    P7 -> P7 [
+        label = "Takt != 0 /\n NSA=Rot, NSF=Rot, WOA=Rot, WOF=Rot, Takt = Takt - 1"
+    ]
+    P8 -> P8 [
+        label = "Takt != 0 /\n NSA=Rot, NSF=Rot, WOA=Rot/Gelb, WOF=Rot, Takt = Takt - 1"
+    ]
+}
