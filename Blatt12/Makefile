@@ -2,7 +2,7 @@ LATEXMK=latexmk
 INKSCAPE=inkscape
 DOT=dot
 
-all: main.tex automat.pdf
+all: main.tex automat.pdf 117_Aufgabe2.asm
 	$(LATEXMK) -pdf main.tex
 
 automat.pdf: automat.dot
